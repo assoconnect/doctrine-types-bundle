@@ -1,0 +1,26 @@
+framework:
+    test: ~
+    secret: test
+    profiler:
+        enabled: false
+    validation:
+        enabled: true
+        enable_annotations: true
+
+doctrine:
+    dbal:
+        driver: 'pdo_mysql'
+    orm:
+        auto_generate_proxy_classes: true
+        mappings:
+            App:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/Tests/Functional/App/Entity'
+                prefix: 'AssoConnect\DoctrineValidatorBundle\Tests\Functional\App\Entity'
+
+services:
+    AssoConnect\DoctrineValidatorBundle\Validator\Constraints\EntityValidator:
+        public: true
+        arguments:
+            $entityManager: "@doctrine.orm.entity_manager"

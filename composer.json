@@ -1,0 +1,45 @@
+{
+  "name": "assoconnect/doctrine-validator-bundle",
+  "description": "Custom Symfony validator for Doctrine entities.",
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "keywords": ["Doctrine", "Validation"],
+  "authors": [
+    {
+      "name": "AssoConnect",
+      "homepage": "https://www.assoconnect.com"
+    },
+    {
+      "name": "Sylvain Fabre"
+    },
+    {
+      "name": "Julien Waguet"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "AssoConnect\\DoctrineValidatorBundle\\": ""
+    },
+    "exclude-from-classmap": [
+      "/Tests/"
+    ]
+  },
+  "require": {
+    "assoconnect/validator-bundle": "^0",
+    "austinsmorris/doctrine-dbal-datetimeutc": "^2.0",
+    "doctrine/dbal": "2.*",
+    "doctrine/doctrine-bundle": "^1.9",
+    "php": "^7.1",
+    "ramsey/uuid-doctrine": "^1.4",
+    "symfony/validator": "^4.0",
+    "symfony/property-access": "^4.1",
+    "symfony/intl": "^4.1"
+  },
+  "require-dev": {
+    "doctrine/cache": "~1.0",
+    "doctrine/annotations": "~1.0",
+    "phpunit/phpunit": "^7.0",
+    "symfony/framework-bundle": "^4.1",
+    "symfony/yaml": "^4.1"
+  }
+}
