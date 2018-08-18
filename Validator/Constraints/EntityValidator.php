@@ -54,27 +54,15 @@ Class EntityValidator extends ConstraintValidator
     public function validate($entity, Constraint $constraint)
     {
 
-        $metadata = $this->em->getClassMetadata(get_class($entity));
+        $class = get_class($entity);
+        $metadata = $this->em->getClassMetadata($class);
         $fields = $metadata->getFieldNames();
-
         $validator = $this->context->getValidator()->inContext($this->context);
-
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
         foreach($fields as $field){
 
-            $fieldMapping = $metadata->fieldMappings[$field];
-
-            $constraints = [];
-
-            // Nullable field
-            if($fieldMapping['nullable'] === false){
-                $constraints[] = [new NotNull()];
-            }
-
-            $constraints[] = $this->getConstraintsForType($fieldMapping);
-
-            $constraints = call_user_func_array('array_merge', $constraints);
+            $constraints = $this->getConstraints($class, $field);
 
             if($constraints){
 
@@ -179,6 +167,26 @@ Class EntityValidator extends ConstraintValidator
                 throw new \DomainException('Unsupported field type: ' . $fieldMapping['type']);
                 break;
         }
+
+        return $constraints;
+    }
+
+    public function getConstraints(string $class, string $field) :array
+    {
+        $metadata = $this->em->getClassMetadata($class);
+
+        $fieldMapping = $metadata->fieldMappings[$field];
+
+        $constraints = [];
+
+        // Nullable field
+        if($fieldMapping['nullable'] === false){
+            $constraints[] = [new NotNull()];
+        }
+
+        $constraints[] = $this->getConstraintsForType($fieldMapping);
+
+        $constraints = call_user_func_array('array_merge', $constraints);
 
         return $constraints;
     }
