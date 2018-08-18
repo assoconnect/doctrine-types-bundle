@@ -3,3 +3,5 @@ services:
     AssoConnect\DoctrineValidatorBundle\Validator\Constraints\EntityValidator:
         arguments:
             $entityManager: "@doctrine.orm.entity_manager"
+        tags:
+            - validator.constraint_validator

@@ -18,9 +18,3 @@ doctrine:
                 type: annotation
                 dir: '%kernel.project_dir%/Tests/Functional/App/Entity'
                 prefix: 'AssoConnect\DoctrineValidatorBundle\Tests\Functional\App\Entity'
-
-services:
-    AssoConnect\DoctrineValidatorBundle\Validator\Constraints\EntityValidator:
-        public: true
-        arguments:
-            $entityManager: "@doctrine.orm.entity_manager"
