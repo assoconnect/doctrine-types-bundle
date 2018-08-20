@@ -2,8 +2,10 @@
 
 namespace AssoConnect\DoctrineValidatorBundle\DependencyInjection;
 
+use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\BicType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\CountryType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\EmailType;
+use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\IbanType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\LatitudeType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\LocaleType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\LongitudeType;
@@ -26,8 +28,10 @@ Class AssoConnectDoctrineValidatorExtension extends Extension implements Prepend
         $container->prependExtensionConfig('doctrine', [
             'dbal' => [
                 'types' => [
+                    'bic' => BicType::class,
                     'country' => CountryType::class,
                     'email' => EmailType::class,
+                    'iban' => IbanType::class,
                     'latitude' => LatitudeType::class,
                     'locale' => LocaleType::class,
                     'longitude' => LongitudeType::class,
@@ -39,8 +43,10 @@ Class AssoConnectDoctrineValidatorExtension extends Extension implements Prepend
                     'timezone' => TimezoneType::class,
                 ],
                 'mapping_types' => [
+                    'bic' => 'string',
                     'country' => 'string',
                     'email' => 'string',
+                    'iban' => 'string',
                     'latitude' => 'decimal',
                     'locale' => 'string',
                     'longitude' => 'decimal',
