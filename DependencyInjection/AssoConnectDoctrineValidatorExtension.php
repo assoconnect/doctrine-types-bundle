@@ -2,6 +2,7 @@
 
 namespace AssoConnect\DoctrineValidatorBundle\DependencyInjection;
 
+use ASM\Doctrine\DBAL\Types\DateTimeUTCType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\BicType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\CountryType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\EmailType;
@@ -15,6 +16,7 @@ use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\PhoneLandlineType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\PhoneMobileType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\PhoneType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\TimezoneType;
+use Ramsey\Uuid\Doctrine\UuidBinaryOrderedTimeType;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
@@ -30,6 +32,9 @@ Class AssoConnectDoctrineValidatorExtension extends Extension implements Prepend
                 'types' => [
                     'bic' => BicType::class,
                     'country' => CountryType::class,
+                    'datetime' => DateTimeUTCType::class,
+                    'datetimetz' => DateTimeUTCType::class,
+                    'datetimeutc' => DateTimeUTCType::class,
                     'email' => EmailType::class,
                     'iban' => IbanType::class,
                     'latitude' => LatitudeType::class,
@@ -41,10 +46,13 @@ Class AssoConnectDoctrineValidatorExtension extends Extension implements Prepend
                     'phonelandline' => PhoneLandlineType::class,
                     'phonemobile' => PhoneMobileType::class,
                     'timezone' => TimezoneType::class,
+                    'uuid_binary_ordered_time' => UuidBinaryOrderedTimeType::class,
                 ],
                 'mapping_types' => [
                     'bic' => 'string',
                     'country' => 'string',
+                    'datetimetz' => 'datetime',
+                    'datetimeutc' => 'datetime',
                     'email' => 'string',
                     'iban' => 'string',
                     'latitude' => 'decimal',
@@ -56,6 +64,7 @@ Class AssoConnectDoctrineValidatorExtension extends Extension implements Prepend
                     'phonelandline' => 'string',
                     'phonemobile' => 'string',
                     'timezone' => 'string',
+                    'uuid_binary_ordered_time' => 'binary',
                 ],
             ]
         ]);

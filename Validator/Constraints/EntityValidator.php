@@ -97,6 +97,8 @@ Class EntityValidator extends ConstraintValidator
                 $constraints[] = new Type(\DateTime::class);
                 break;
             case 'datetime':
+            case 'datetimetz':
+            case 'datetimeutc':
                 $constraints[] = new Type(\DateTime::class);
                 break;
             case 'decimal':
