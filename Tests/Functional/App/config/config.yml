@@ -10,6 +10,7 @@ framework:
 doctrine:
     dbal:
         driver: 'pdo_mysql'
+        server_version: 5.7
     orm:
         auto_generate_proxy_classes: true
         mappings:
