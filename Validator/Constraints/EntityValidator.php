@@ -31,6 +31,7 @@ use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\Constraints\Uuid;
+use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Validator\ConstraintValidator;
 
 /**
@@ -86,6 +87,7 @@ Class EntityValidator extends ConstraintValidator
         switch($fieldMapping['type']){
             case 'bic':
                 $constraints[] = new Bic();
+                $constraints[] = new Regex('/^[0-9A-Z]+$/');
                 break;
             case 'boolean':
                 $constraints[] = new Type('bool');
@@ -121,6 +123,9 @@ Class EntityValidator extends ConstraintValidator
                 break;
             case 'integer':
                 $constraints[] = new Type('integer');
+                break;
+            case 'json':
+                // TODO: implement JSON validation?
                 break;
             case 'latitude':
                 $constraints[] = new Latitude();
@@ -177,18 +182,28 @@ Class EntityValidator extends ConstraintValidator
     {
         $metadata = $this->em->getClassMetadata($class);
 
-        $fieldMapping = $metadata->fieldMappings[$field];
-
         $constraints = [];
 
-        // Nullable field
-        if($fieldMapping['nullable'] === false){
-            $constraints[] = [new NotNull()];
+        if(array_key_exists($field, $metadata->fieldMappings)){
+            $fieldMapping = $metadata->fieldMappings[$field];
+
+            // Nullable field
+            if($fieldMapping['nullable'] === false){
+                $constraints[] = [new NotNull()];
+            }
+
+            $constraints[] = $this->getConstraintsForType($fieldMapping);
+
+            $constraints = call_user_func_array('array_merge', $constraints);
         }
 
-        $constraints[] = $this->getConstraintsForType($fieldMapping);
+        else if(array_key_exists($field, $metadata->embeddedClasses)){
+            $constraints[] = new Valid();
+        }
 
-        $constraints = call_user_func_array('array_merge', $constraints);
+        else {
+            throw new \LogicException('Unknown field:' . $field);
+        }
 
         return $constraints;
     }
