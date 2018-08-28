@@ -25,9 +25,9 @@
     ]
   },
   "require": {
-    "assoconnect/validator-bundle": "^0",
+    "assoconnect/validator-bundle": "^1.0",
     "austinsmorris/doctrine-dbal-datetimeutc": "^2.0",
-    "doctrine/dbal": "2.*",
+    "doctrine/dbal": "^2.8",
     "doctrine/doctrine-bundle": "^1.9",
     "php": "^7.1",
     "ramsey/uuid-doctrine": "^1.4",
