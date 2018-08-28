@@ -60,6 +60,21 @@ Class MyEntity
     public $float;
 
     /**
+     * @ORM\Column(type="iban")
+     */
+    public $iban;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    public $integer;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    public $json;
+
+    /**
      * @ORM\Column(type="latitude")
      */
     public $latitude;
@@ -73,16 +88,6 @@ Class MyEntity
      * @ORM\Column(type="longitude")
      */
     public $longitude;
-
-    /**
-     * @ORM\Column(type="iban")
-     */
-    public $iban;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    public $integer;
 
     /**
      * @ORM\Column(type="money")

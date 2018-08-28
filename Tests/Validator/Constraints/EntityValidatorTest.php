@@ -63,6 +63,7 @@ Class EntityValidatorTest extends KernelTestCase
         $entity->longitude = 3.4;
         $entity->iban = 'CH9300762011623852957';
         $entity->integer = 123;
+        $entity->json = array();
         $entity->money = 4.5;
         $entity->percent = 5.6;
         $entity->phone = '+33123456789';
@@ -112,6 +113,15 @@ Class EntityValidatorTest extends KernelTestCase
         $entity->float = 'a';
         $codes['float'] = [Type::INVALID_TYPE_ERROR];
 
+        $entity->iban = 'CH9300762011623852958';
+        $codes['iban'] = [Iban::CHECKSUM_FAILED_ERROR];
+
+        $entity->integer = 'abc';
+        $codes['integer'] = [Type::INVALID_TYPE_ERROR];
+
+        $entity->json = array();
+        // TODO: implement JSON validation?
+
         $entity->latitude = 91.0;
         $codes['latitude'] = [LessThanOrEqual::TOO_HIGH_ERROR];
 
@@ -120,12 +130,6 @@ Class EntityValidatorTest extends KernelTestCase
 
         $entity->longitude = 181.0;
         $codes['longitude'] = [LessThanOrEqual::TOO_HIGH_ERROR];
-
-        $entity->iban = 'CH9300762011623852958';
-        $codes['iban'] = [Iban::CHECKSUM_FAILED_ERROR];
-
-        $entity->integer = 'abc';
-        $codes['integer'] = [Type::INVALID_TYPE_ERROR];
 
         $entity->money = -1;
         $codes['money'] = [GreaterThanOrEqual::TOO_LOW_ERROR];
