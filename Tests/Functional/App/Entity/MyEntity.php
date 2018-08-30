@@ -95,6 +95,11 @@ Class MyEntity
     public $money;
 
     /**
+     * @ORM\Column(type="string", nullable=false)
+     */
+    public $nullable;
+
+    /**
      * @ORM\Column(type="percent")
      */
     public $percent;
@@ -138,5 +143,31 @@ Class MyEntity
      * @ORM\Column(type="uuid_binary_ordered_time")
      */
     public $uuid_binary_ordered_time;
+
+    /** ASSOCIATIONS */
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MyEntityParent")
+     */
+    public $parentNullable;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MyEntityParent")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    public $parentNotNullable;
+
+    /**
+     * @ORM\OneToMany(targetEntity="MyEntityParent", mappedBy="mainChild")
+     */
+    public $mainParent;
+
+    /** EMBEDDABLES */
+
+    /**
+     * @ORM\Embedded(class="MyEmbeddable")
+     */
+    public $embeddable;
+
 
 }

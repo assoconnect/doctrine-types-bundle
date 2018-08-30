@@ -3,7 +3,9 @@
 namespace AssoConnect\DoctrineValidatorBundle\Tests\Validator\Constraints;
 
 use AssoConnect\DoctrineValidatorBundle\Test\KernelTestCase;
+use AssoConnect\DoctrineValidatorBundle\Tests\Functional\App\Entity\MyEmbeddable;
 use AssoConnect\DoctrineValidatorBundle\Tests\Functional\App\Entity\MyEntity;
+use AssoConnect\DoctrineValidatorBundle\Tests\Functional\App\Entity\MyEntityParent;
 use AssoConnect\DoctrineValidatorBundle\Validator\Constraints\Entity;
 use AssoConnect\DoctrineValidatorBundle\Validator\Constraints\EntityValidator;
 use AssoConnect\ValidatorBundle\Validator\Constraints\Email;
@@ -65,6 +67,7 @@ Class EntityValidatorTest extends KernelTestCase
         $entity->integer = 123;
         $entity->json = array();
         $entity->money = 4.5;
+        $entity->nullable = 'oui';
         $entity->percent = 5.6;
         $entity->phone = '+33123456789';
         $entity->phonelandline = '+33123456789';
@@ -74,6 +77,11 @@ Class EntityValidatorTest extends KernelTestCase
         $entity->timezone = 'Europe/Paris';
         $entity->uuid = '863c9c0f-59db-4ac7-9fd2-787c070b037c';
         $entity->uuid_binary_ordered_time = '6381fbe0-e651-46f5-b171-3f25518bd8e9';
+
+        $entity->parentNullable = null;
+        $entity->parentNotNullable = new MyEntityParent();
+
+        $entity->embeddable = new MyEmbeddable(true);
 
         $errors = $this->validator->validate($entity, new Entity());
         foreach($errors as $error){
@@ -134,6 +142,9 @@ Class EntityValidatorTest extends KernelTestCase
         $entity->money = -1;
         $codes['money'] = [GreaterThanOrEqual::TOO_LOW_ERROR];
 
+        $entity->nullable = null;
+        $codes['nullable'] = [NotNull::IS_NULL_ERROR];
+
         $entity->percent = -1;
         $codes['percent'] = [GreaterThanOrEqual::TOO_LOW_ERROR];
 
@@ -161,11 +172,22 @@ Class EntityValidatorTest extends KernelTestCase
         $entity->uuid_binary_ordered_time = 'bar';
         $codes['uuid_binary_ordered_time'] = [Uuid::INVALID_CHARACTERS_ERROR];
 
+        $entity->parentNullable = new MyEntity();
+        $codes['parentNullable'] = [Type::INVALID_TYPE_ERROR];
+
+        $entity->parentNotNullable = null;
+        $codes['parentNotNullable'] = [NotNull::IS_NULL_ERROR];
+
+        $entity->embeddable = new MyEmbeddable('hello');
+        $codes['embeddable.bool'] = [Type::INVALID_TYPE_ERROR];
+
         $errors = $this->validator->validate($entity, new Entity());
         $errorsPerPath = [];
         foreach($errors as $error){
             $errorsPerPath[$error->getPropertyPath()][] = $error->getCode();
         }
+        ksort($codes);
+        ksort($errorsPerPath);
         $this->assertSame($codes, $errorsPerPath);
     }
 

@@ -57,7 +57,7 @@ Class EntityValidator extends ConstraintValidator
 
         $class = get_class($entity);
         $metadata = $this->em->getClassMetadata($class);
-        $fields = $metadata->getFieldNames();
+        $fields = array_keys($metadata->getReflectionProperties());
         $validator = $this->context->getValidator()->inContext($this->context);
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
@@ -201,8 +201,26 @@ Class EntityValidator extends ConstraintValidator
             $constraints[] = new Valid();
         }
 
+        else if(array_key_exists($field, $metadata->associationMappings)){
+            $fieldMapping = $metadata->associationMappings[$field];
+
+            if($fieldMapping['isOwningSide']){
+                // Nullable field
+                if(
+                    isset($fieldMapping['joinColumns'][0]['nullable'])
+                    && $fieldMapping['joinColumns'][0]['nullable'] === false
+
+                ){
+                    $constraints[] = new NotNull();
+                }
+
+
+                $constraints[] = new Type($fieldMapping['targetEntity']);
+            }
+        }
+
         else {
-            throw new \LogicException('Unknown field:' . $field);
+            throw new \LogicException('Unknown field: ' . $class  . '::$' . $field);
         }
 
         return $constraints;
