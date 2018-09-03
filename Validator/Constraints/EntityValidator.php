@@ -17,9 +17,11 @@ use AssoConnect\ValidatorBundle\Validator\Constraints\PhoneLandline;
 use AssoConnect\ValidatorBundle\Validator\Constraints\PhoneMobile;
 use AssoConnect\ValidatorBundle\Validator\Constraints\Timezone;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\ClassMetadata;
 use Symfony\Component\PropertyAccess\Exception\UnexpectedTypeException;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\Bic;
 use Symfony\Component\Validator\Constraints\Country;
 use Symfony\Component\Validator\Constraints\GreaterThan;
@@ -205,17 +207,32 @@ Class EntityValidator extends ConstraintValidator
             $fieldMapping = $metadata->associationMappings[$field];
 
             if($fieldMapping['isOwningSide']){
-                // Nullable field
-                if(
-                    isset($fieldMapping['joinColumns'][0]['nullable'])
-                    && $fieldMapping['joinColumns'][0]['nullable'] === false
+                // ToOne
+                if($fieldMapping['type'] & ClassMetadata::TO_ONE){
+                    $constraints[] = new Type($fieldMapping['targetEntity']);
+                    // Nullable field
+                    if(
+                        isset($fieldMapping['joinColumns'][0]['nullable'])
+                        && $fieldMapping['joinColumns'][0]['nullable'] === false
 
-                ){
-                    $constraints[] = new NotNull();
+                    ){
+                        $constraints[] = new NotNull();
+                    }
                 }
 
+                // ToMany
+                else if($fieldMapping['type'] & ClassMetadata::TO_MANY){
+                    $constraints[] = new All([
+                        'constraints' => [
+                            new Type($fieldMapping['targetEntity']),
+                        ],
+                    ]);
+                }
 
-                $constraints[] = new Type($fieldMapping['targetEntity']);
+                // Unknown
+                else{
+                    throw new \DomainException('Unknown type: ' . $fieldMapping['type']);
+                }
             }
         }
 

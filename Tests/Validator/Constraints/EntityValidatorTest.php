@@ -67,7 +67,7 @@ Class EntityValidatorTest extends KernelTestCase
         $entity->integer = 123;
         $entity->json = array();
         $entity->money = 4.5;
-        $entity->nullable = 'oui';
+        $entity->notNullable = 'oui';
         $entity->percent = 5.6;
         $entity->phone = '+33123456789';
         $entity->phonelandline = '+33123456789';
@@ -80,6 +80,7 @@ Class EntityValidatorTest extends KernelTestCase
 
         $entity->parentNullable = null;
         $entity->parentNotNullable = new MyEntityParent();
+        $entity->parents = [new MyEntityParent()];
 
         $entity->embeddable = new MyEmbeddable(true);
 
@@ -142,8 +143,8 @@ Class EntityValidatorTest extends KernelTestCase
         $entity->money = -1;
         $codes['money'] = [GreaterThanOrEqual::TOO_LOW_ERROR];
 
-        $entity->nullable = null;
-        $codes['nullable'] = [NotNull::IS_NULL_ERROR];
+        $entity->notNullable = null;
+        $codes['notNullable'] = [NotNull::IS_NULL_ERROR];
 
         $entity->percent = -1;
         $codes['percent'] = [GreaterThanOrEqual::TOO_LOW_ERROR];
@@ -177,6 +178,9 @@ Class EntityValidatorTest extends KernelTestCase
 
         $entity->parentNotNullable = null;
         $codes['parentNotNullable'] = [NotNull::IS_NULL_ERROR];
+
+        $entity->parents = [new MyEmbeddable('hello')];
+        $codes['parents[0]'] = [Type::INVALID_TYPE_ERROR];
 
         $entity->embeddable = new MyEmbeddable('hello');
         $codes['embeddable.bool'] = [Type::INVALID_TYPE_ERROR];

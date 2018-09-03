@@ -97,7 +97,7 @@ Class MyEntity
     /**
      * @ORM\Column(type="string", nullable=false)
      */
-    public $nullable;
+    public $notNullable;
 
     /**
      * @ORM\Column(type="percent")
@@ -161,6 +161,11 @@ Class MyEntity
      * @ORM\OneToMany(targetEntity="MyEntityParent", mappedBy="mainChild")
      */
     public $mainParent;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="MyEntityParent")
+     */
+    public $parents;
 
     /** EMBEDDABLES */
 
