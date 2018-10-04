@@ -10,7 +10,7 @@ Class MoneyType extends DecimalType
 
     const TYPE = 'money';
 
-    const DEFAULT_PRECISION = 10;
+    const DEFAULT_PRECISION = 11;
     const DEFAULT_SCALE = 2;
 
     /**
