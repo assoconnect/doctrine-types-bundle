@@ -1,4 +1,4 @@
-image: php:7.1
+image: php:7.2
 
 before_script:
   # Install git, the php image doesn't have installed
