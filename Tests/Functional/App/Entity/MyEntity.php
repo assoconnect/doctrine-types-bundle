@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @AssoConnectAssert\Entity()
  * @ORM\Entity()
  */
-Class MyEntity
+class MyEntity
 {
 
     /**
@@ -33,6 +33,11 @@ Class MyEntity
      * @ORM\Column(type="country")
      */
     public $country;
+
+    /**
+    * @ORM\Column(type="currency")
+    */
+    public $currency;
 
     /**
      * @ORM\Column(type="date")
@@ -68,6 +73,11 @@ Class MyEntity
      * @ORM\Column(type="integer")
      */
     public $integer;
+
+    /**
+    * @ORM\Column(type="ip")
+    */
+    public $ip;
 
     /**
      * @ORM\Column(type="json")
@@ -173,6 +183,4 @@ Class MyEntity
      * @ORM\Embedded(class="MyEmbeddable")
      */
     public $embeddable;
-
-
 }

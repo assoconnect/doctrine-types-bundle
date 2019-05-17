@@ -5,7 +5,7 @@ namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-Class PhoneType extends StringType
+class PhoneType extends StringType
 {
 
     const TYPE = 'phone';
@@ -24,5 +24,4 @@ Class PhoneType extends StringType
     {
         return static::TYPE;
     }
-
 }

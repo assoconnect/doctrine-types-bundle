@@ -5,7 +5,7 @@ namespace AssoConnect\DoctrineValidatorBundle\Tests\Doctrine\DBAL\Types;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\LatitudeType;
 use AssoConnect\DoctrineValidatorBundle\Test\TypeTestCase;
 
-Class LatitudeTypeTest extends TypeTestCase
+class LatitudeTypeTest extends TypeTestCase
 {
 
     protected function getClass(): string
@@ -17,5 +17,4 @@ Class LatitudeTypeTest extends TypeTestCase
     {
         $this->assertSame(LatitudeType::TYPE, $this->type->getName());
     }
-
 }

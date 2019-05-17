@@ -5,7 +5,7 @@ namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\DecimalType;
 
-Class PercentType extends DecimalType
+class PercentType extends DecimalType
 {
 
     const TYPE = 'percent';
@@ -18,10 +18,10 @@ Class PercentType extends DecimalType
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        if(!isset($fieldDeclaration['precision'])){
+        if (!isset($fieldDeclaration['precision'])) {
             $fieldDeclaration['precision'] = self::DEFAULT_PRECISION;
         }
-        if(!isset($fieldDeclaration['scale'])){
+        if (!isset($fieldDeclaration['scale'])) {
             $fieldDeclaration['scale'] = self::DEFAULT_SCALE;
         }
         return parent::getSQLDeclaration($fieldDeclaration, $platform);
@@ -34,5 +34,4 @@ Class PercentType extends DecimalType
     {
         return self::TYPE;
     }
-
 }

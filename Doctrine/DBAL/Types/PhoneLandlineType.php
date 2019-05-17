@@ -3,7 +3,7 @@
 namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 
 
-Class PhoneLandlineType extends PhoneType
+class PhoneLandlineType extends PhoneType
 {
     const TYPE = 'phonelandline';
 }

@@ -2,7 +2,7 @@
 
 namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 
-Class PhoneMobileType extends PhoneType
+class PhoneMobileType extends PhoneType
 {
     const TYPE = 'phonemobile';
 }

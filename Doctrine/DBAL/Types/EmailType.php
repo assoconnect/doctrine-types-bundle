@@ -5,7 +5,7 @@ namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-Class EmailType extends StringType
+class EmailType extends StringType
 {
 
     const TYPE = 'email';
@@ -14,5 +14,4 @@ Class EmailType extends StringType
     {
         return self::TYPE;
     }
-
 }

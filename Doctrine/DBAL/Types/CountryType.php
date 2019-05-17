@@ -5,7 +5,7 @@ namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-Class CountryType extends StringType
+class CountryType extends StringType
 {
 
     const TYPE = 'country';
@@ -24,5 +24,4 @@ Class CountryType extends StringType
     {
         return self::TYPE;
     }
-
 }

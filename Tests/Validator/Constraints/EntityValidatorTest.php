@@ -13,9 +13,11 @@ use AssoConnect\ValidatorBundle\Validator\Constraints\Phone;
 use AssoConnect\ValidatorBundle\Validator\Constraints\Timezone;
 use Symfony\Component\Validator\Constraints\Bic;
 use Symfony\Component\Validator\Constraints\Country;
+use Symfony\Component\Validator\Constraints\Currency;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Symfony\Component\Validator\Constraints\Iban;
+use Symfony\Component\Validator\Constraints\Ip;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\LessThan;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
@@ -27,7 +29,7 @@ use Symfony\Component\Validator\ContainerConstraintValidatorFactory;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-Class EntityValidatorTest extends KernelTestCase
+class EntityValidatorTest extends KernelTestCase
 {
 
     /**
@@ -35,7 +37,7 @@ Class EntityValidatorTest extends KernelTestCase
      */
     protected $validator;
 
-    public function setUp()
+    protected function setUp(): void
     {
         self::bootKernel();
 
@@ -55,6 +57,7 @@ Class EntityValidatorTest extends KernelTestCase
         $entity->bic = 'SOGEFRPP';
         $entity->boolean = true;
         $entity->country = 'FR';
+        $entity->currency = 'EUR';
         $entity->date = new \DateTime();
         $entity->datetime = new \DateTime();
         $entity->decimal = 99.999;
@@ -65,6 +68,7 @@ Class EntityValidatorTest extends KernelTestCase
         $entity->longitude = 3.4;
         $entity->iban = 'CH9300762011623852957';
         $entity->integer = 123;
+        $entity->ip = '172.16.254.1';
         $entity->json = array();
         $entity->money = 4.5;
         $entity->notNullable = 'oui';
@@ -85,7 +89,7 @@ Class EntityValidatorTest extends KernelTestCase
         $entity->embeddable = new MyEmbeddable(true);
 
         $errors = $this->validator->validate($entity, new Entity());
-        foreach($errors as $error){
+        foreach ($errors as $error) {
             var_dump($error->getPropertyPath() . ': ' . $error->getMessage());
         }
         $this->assertCount(0, $errors);
@@ -107,6 +111,9 @@ Class EntityValidatorTest extends KernelTestCase
         $entity->country = 'Hello';
         $codes['country'] = [Country::NO_SUCH_COUNTRY_ERROR];
 
+        $entity->currency = 'foo';
+        $codes['currency'] = [Currency::NO_SUCH_CURRENCY_ERROR];
+
         $entity->date = 'hello';
         $codes['date'] = [Type::INVALID_TYPE_ERROR];
 
@@ -127,6 +134,9 @@ Class EntityValidatorTest extends KernelTestCase
 
         $entity->integer = 'abc';
         $codes['integer'] = [Type::INVALID_TYPE_ERROR];
+
+        $entity->ip = 'bar';
+        $codes['ip'] = [Ip::INVALID_IP_ERROR];
 
         $entity->json = array();
         // TODO: implement JSON validation?
@@ -187,12 +197,11 @@ Class EntityValidatorTest extends KernelTestCase
 
         $errors = $this->validator->validate($entity, new Entity());
         $errorsPerPath = [];
-        foreach($errors as $error){
+        foreach ($errors as $error) {
             $errorsPerPath[$error->getPropertyPath()][] = $error->getCode();
         }
         ksort($codes);
         ksort($errorsPerPath);
         $this->assertSame($codes, $errorsPerPath);
     }
-
 }

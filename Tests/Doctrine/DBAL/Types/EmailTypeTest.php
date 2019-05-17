@@ -5,7 +5,7 @@ namespace AssoConnect\DoctrineValidatorBundle\Tests\Doctrine\DBAL\Types;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\EmailType;
 use AssoConnect\DoctrineValidatorBundle\Test\TypeTestCase;
 
-Class EmailTypeTest extends TypeTestCase
+class EmailTypeTest extends TypeTestCase
 {
 
     protected function getClass(): string
@@ -17,5 +17,4 @@ Class EmailTypeTest extends TypeTestCase
     {
         $this->assertSame(EmailType::TYPE, $this->type->getName());
     }
-
 }

@@ -23,7 +23,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-Class AssoConnectDoctrineValidatorExtension extends Extension implements PrependExtensionInterface
+class AssoConnectDoctrineValidatorExtension extends Extension implements PrependExtensionInterface
 {
     public function prepend(ContainerBuilder $container)
     {
@@ -74,7 +74,7 @@ Class AssoConnectDoctrineValidatorExtension extends Extension implements Prepend
     {
         $loader = new YamlFileLoader(
             $container,
-            new FileLocator(__DIR__.'/../Resources/config')
+            new FileLocator(__DIR__ . '/../Resources/config')
         );
         $loader->load('services.yaml');
     }
