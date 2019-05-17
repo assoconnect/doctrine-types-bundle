@@ -7,6 +7,7 @@
 This Symfony4 bundle provides the integration of [Symfony validation component](https://symfony.com/doc/current/validation.html) with [Doctrine entity custom type](https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/cookbook/custom-mapping-types.html) to avoid duplicate code for the following types:
 - bic
 - boolean
+- currency
 - date
 - datetime
 - email
@@ -15,6 +16,7 @@ This Symfony4 bundle provides the integration of [Symfony validation component](
 - longitude
 - iban
 - integer
+- ip
 - money
 - percent
 - phone (both landline & mobile)
