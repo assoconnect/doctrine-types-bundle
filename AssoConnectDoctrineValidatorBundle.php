@@ -6,6 +6,6 @@ use AssoConnect\DoctrineValidatorBundle\DependencyInjection\AssoConnectDoctrineV
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-Class AssoConnectDoctrineValidatorBundle extends Bundle
+class AssoConnectDoctrineValidatorBundle extends Bundle
 {
 }

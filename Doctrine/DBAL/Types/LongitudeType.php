@@ -5,7 +5,7 @@ namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\DecimalType;
 
-Class LongitudeType extends DecimalType
+class LongitudeType extends DecimalType
 {
 
     const TYPE = 'longitude';
@@ -18,10 +18,10 @@ Class LongitudeType extends DecimalType
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        if(!isset($fieldDeclaration['precision'])){
+        if (!isset($fieldDeclaration['precision'])) {
             $fieldDeclaration['precision'] = self::DEFAULT_PRECISION;
         }
-        if(!isset($fieldDeclaration['scale'])){
+        if (!isset($fieldDeclaration['scale'])) {
             $fieldDeclaration['scale'] = self::DEFAULT_SCALE;
         }
         return parent::getSQLDeclaration($fieldDeclaration, $platform);
@@ -34,5 +34,4 @@ Class LongitudeType extends DecimalType
     {
         return self::TYPE;
     }
-
 }

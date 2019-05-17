@@ -5,11 +5,11 @@ namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-class BicType extends StringType
+class IpType extends StringType
 {
 
-    const TYPE = 'bic';
-    const LENGTH = 11;
+    const TYPE = 'ip';
+    const LENGTH = 39;
 
     /**
      * @inheritdoc

@@ -5,7 +5,7 @@ namespace AssoConnect\DoctrineValidatorBundle\Tests\Doctrine\DBAL\Types;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\PhoneType;
 use AssoConnect\DoctrineValidatorBundle\Test\TypeTestCase;
 
-Class PhoneTypeTest extends TypeTestCase
+class PhoneTypeTest extends TypeTestCase
 {
 
     protected function getClass(): string
@@ -17,5 +17,4 @@ Class PhoneTypeTest extends TypeTestCase
     {
         $this->assertSame(PhoneType::TYPE, $this->type->getName());
     }
-
 }

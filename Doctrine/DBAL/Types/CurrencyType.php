@@ -5,18 +5,18 @@ namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-class BicType extends StringType
+class CurrencyType extends StringType
 {
 
-    const TYPE = 'bic';
-    const LENGTH = 11;
+    const TYPE = 'currency';
 
     /**
      * @inheritdoc
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        return 'VARCHAR(' . self::LENGTH . ')';
+        $fieldDeclaration['length'] = 3;
+        return parent::getSQLDeclaration($fieldDeclaration, $platform);
     }
 
     public function getName()

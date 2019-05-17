@@ -5,7 +5,7 @@ namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-Class IbanType extends StringType
+class IbanType extends StringType
 {
 
     const TYPE = 'iban';
@@ -23,5 +23,4 @@ Class IbanType extends StringType
     {
         return self::TYPE;
     }
-
 }

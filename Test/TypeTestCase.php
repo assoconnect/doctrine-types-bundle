@@ -6,7 +6,7 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
 use PHPUnit\Framework\TestCase;
 
-Abstract class TypeTestCase extends TestCase
+abstract class TypeTestCase extends TestCase
 {
 
     /**
@@ -19,9 +19,9 @@ Abstract class TypeTestCase extends TestCase
      */
     protected $type;
 
-    protected abstract function getClass() :string;
+    abstract protected function getClass() :string;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->abstractPlatform = $this->getMockForAbstractClass('Doctrine\DBAL\Platforms\AbstractPlatform');
 
@@ -34,5 +34,4 @@ Abstract class TypeTestCase extends TestCase
 
         $this->type = Type::getType($name);
     }
-
 }

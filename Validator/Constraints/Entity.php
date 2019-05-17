@@ -7,12 +7,11 @@ use Symfony\Component\Validator\Constraint;
 /**
  * @Annotation
  */
-Class Entity extends Constraint
+class Entity extends Constraint
 {
 
     public function getTargets()
     {
         return self::CLASS_CONSTRAINT;
     }
-
 }

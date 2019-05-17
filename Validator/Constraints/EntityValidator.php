@@ -24,8 +24,10 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\Bic;
 use Symfony\Component\Validator\Constraints\Country;
+use Symfony\Component\Validator\Constraints\Currency;
 use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\Iban;
+use Symfony\Component\Validator\Constraints\Ip;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\LessThan;
 use Symfony\Component\Validator\Constraints\Locale;
@@ -39,7 +41,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 /**
  * @Annotation
  */
-Class EntityValidator extends ConstraintValidator
+class EntityValidator extends ConstraintValidator
 {
     /**
      * @var EntityManagerInterface
@@ -63,17 +65,14 @@ Class EntityValidator extends ConstraintValidator
         $validator = $this->context->getValidator()->inContext($this->context);
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
-        foreach($fields as $field){
-
+        foreach ($fields as $field) {
             $constraints = $this->getConstraints($class, $field);
 
-            if($constraints){
-
+            if ($constraints) {
                 // PropertyAccessor will throw an exception if a null value is found on a path (ex: path is date.start but date is NULL)
-                try{
+                try {
                     $value = $propertyAccessor->getValue($entity, $field);
-                }
-                catch (UnexpectedTypeException $exception){
+                } catch (UnexpectedTypeException $exception) {
                     $value = null;
                 }
 
@@ -86,7 +85,7 @@ Class EntityValidator extends ConstraintValidator
     {
         $constraints = [];
 
-        switch($fieldMapping['type']){
+        switch ($fieldMapping['type']) {
             case 'bic':
                 $constraints[] = new Bic();
                 $constraints[] = new Regex('/^[0-9A-Z]+$/');
@@ -96,6 +95,9 @@ Class EntityValidator extends ConstraintValidator
                 break;
             case 'country':
                 $constraints[] = new Country();
+                break;
+            case 'currency':
+                $constraints[] = new Currency();
                 break;
             case 'date':
                 $constraints[] = new Type(\DateTime::class);
@@ -125,6 +127,9 @@ Class EntityValidator extends ConstraintValidator
                 break;
             case 'integer':
                 $constraints[] = new Type('integer');
+                break;
+            case 'ip':
+                $constraints[] = new Ip(array('version' => 'all'));
                 break;
             case 'json':
                 // TODO: implement JSON validation?
@@ -172,7 +177,7 @@ Class EntityValidator extends ConstraintValidator
             case 'uuid_binary_ordered_time':
                 $constraints[] = new Uuid();
                 break;
-            default :
+            default:
                 throw new \DomainException('Unsupported field type: ' . $fieldMapping['type']);
                 break;
         }
@@ -186,42 +191,37 @@ Class EntityValidator extends ConstraintValidator
 
         $constraints = [];
 
-        if(array_key_exists($field, $metadata->fieldMappings)){
+        if (array_key_exists($field, $metadata->fieldMappings)) {
             $fieldMapping = $metadata->fieldMappings[$field];
 
             // Nullable field
-            if($fieldMapping['nullable'] === false){
+            if ($fieldMapping['nullable'] === false) {
                 $constraints[] = [new NotNull()];
             }
 
             $constraints[] = $this->getConstraintsForType($fieldMapping);
 
             $constraints = call_user_func_array('array_merge', $constraints);
-        }
-
-        else if(array_key_exists($field, $metadata->embeddedClasses)){
+        } elseif (array_key_exists($field, $metadata->embeddedClasses)) {
             $constraints[] = new Valid();
-        }
-
-        else if(array_key_exists($field, $metadata->associationMappings)){
+        } elseif (array_key_exists($field, $metadata->associationMappings)) {
             $fieldMapping = $metadata->associationMappings[$field];
 
-            if($fieldMapping['isOwningSide']){
+            if ($fieldMapping['isOwningSide']) {
                 // ToOne
-                if($fieldMapping['type'] & ClassMetadata::TO_ONE){
+                if ($fieldMapping['type'] & ClassMetadata::TO_ONE) {
                     $constraints[] = new Type($fieldMapping['targetEntity']);
                     // Nullable field
-                    if(
-                        isset($fieldMapping['joinColumns'][0]['nullable'])
+                    if (isset($fieldMapping['joinColumns'][0]['nullable'])
                         && $fieldMapping['joinColumns'][0]['nullable'] === false
 
-                    ){
+                    ) {
                         $constraints[] = new NotNull();
                     }
                 }
 
                 // ToMany
-                else if($fieldMapping['type'] & ClassMetadata::TO_MANY){
+                elseif ($fieldMapping['type'] & ClassMetadata::TO_MANY) {
                     $constraints[] = new All([
                         'constraints' => [
                             new Type($fieldMapping['targetEntity']),
@@ -230,17 +230,14 @@ Class EntityValidator extends ConstraintValidator
                 }
 
                 // Unknown
-                else{
+                else {
                     throw new \DomainException('Unknown type: ' . $fieldMapping['type']);
                 }
             }
-        }
-
-        else {
+        } else {
             throw new \LogicException('Unknown field: ' . $class  . '::$' . $field);
         }
 
         return $constraints;
     }
-
 }

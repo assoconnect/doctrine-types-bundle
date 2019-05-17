@@ -5,7 +5,7 @@ namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-Class LocaleType extends StringType
+class LocaleType extends StringType
 {
 
     const TYPE = 'locale';
@@ -23,5 +23,4 @@ Class LocaleType extends StringType
     {
         return self::TYPE;
     }
-
 }

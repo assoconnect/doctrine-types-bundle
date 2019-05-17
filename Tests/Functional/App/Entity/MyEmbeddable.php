@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Embeddable()
  */
-Class MyEmbeddable
+class MyEmbeddable
 {
 
     /**
@@ -19,5 +19,4 @@ Class MyEmbeddable
     {
         $this->bool = $bool;
     }
-
 }

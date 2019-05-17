@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @AssoConnectAssert\Entity()
  * @ORM\Entity()
  */
-Class MyEntityParent
+class MyEntityParent
 {
 
     /**
@@ -23,5 +23,4 @@ Class MyEntityParent
      * @ORM\ManyToOne(targetEntity="MyEntity")
      */
     public $mainChild;
-
 }

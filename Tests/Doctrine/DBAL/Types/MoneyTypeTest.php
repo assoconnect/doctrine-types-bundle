@@ -5,7 +5,7 @@ namespace AssoConnect\DoctrineValidatorBundle\Tests\Doctrine\DBAL\Types;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\MoneyType;
 use AssoConnect\DoctrineValidatorBundle\Test\TypeTestCase;
 
-Class MoneyTypeTest extends TypeTestCase
+class MoneyTypeTest extends TypeTestCase
 {
 
     protected function getClass(): string
@@ -17,5 +17,4 @@ Class MoneyTypeTest extends TypeTestCase
     {
         $this->assertSame(MoneyType::TYPE, $this->type->getName());
     }
-
 }

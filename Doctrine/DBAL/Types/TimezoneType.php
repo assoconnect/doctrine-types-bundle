@@ -5,7 +5,7 @@ namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-Class TimezoneType extends StringType
+class TimezoneType extends StringType
 {
 
     const TYPE = 'timezone';
@@ -23,5 +23,4 @@ Class TimezoneType extends StringType
     {
         return self::TYPE;
     }
-
 }
