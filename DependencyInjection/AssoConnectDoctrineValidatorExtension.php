@@ -5,8 +5,10 @@ namespace AssoConnect\DoctrineValidatorBundle\DependencyInjection;
 use ASM\Doctrine\DBAL\Types\DateTimeUTCType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\BicType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\CountryType;
+use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\CurrencyType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\EmailType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\IbanType;
+use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\IpType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\LatitudeType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\LocaleType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\LongitudeType;
@@ -32,11 +34,13 @@ class AssoConnectDoctrineValidatorExtension extends Extension implements Prepend
                 'types' => [
                     'bic' => BicType::class,
                     'country' => CountryType::class,
+                    'currency' => CurrencyType::class,
                     'datetime' => DateTimeUTCType::class,
                     'datetimetz' => DateTimeUTCType::class,
                     'datetimeutc' => DateTimeUTCType::class,
                     'email' => EmailType::class,
                     'iban' => IbanType::class,
+                    'ip' => IpType::class,
                     'latitude' => LatitudeType::class,
                     'locale' => LocaleType::class,
                     'longitude' => LongitudeType::class,
@@ -51,10 +55,12 @@ class AssoConnectDoctrineValidatorExtension extends Extension implements Prepend
                 'mapping_types' => [
                     'bic' => 'string',
                     'country' => 'string',
+                    'currency' => 'string',
                     'datetimetz' => 'datetime',
                     'datetimeutc' => 'datetime',
                     'email' => 'string',
                     'iban' => 'string',
+                    'ip' => 'string',
                     'latitude' => 'decimal',
                     'locale' => 'string',
                     'longitude' => 'decimal',
