@@ -22,6 +22,7 @@ This Symfony4 bundle provides the integration of [Symfony validation component](
 - phone (both landline & mobile)
 - string
 - text
+- timezone
 - uuid
 - uuid_binary_ordered_time
 

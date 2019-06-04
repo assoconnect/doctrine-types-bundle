@@ -10,11 +10,9 @@ use AssoConnect\DoctrineValidatorBundle\Validator\Constraints\Entity;
 use AssoConnect\DoctrineValidatorBundle\Validator\Constraints\EntityValidator;
 use AssoConnect\ValidatorBundle\Validator\Constraints\Email;
 use AssoConnect\ValidatorBundle\Validator\Constraints\Phone;
-use AssoConnect\ValidatorBundle\Validator\Constraints\Timezone;
 use Symfony\Component\Validator\Constraints\Bic;
 use Symfony\Component\Validator\Constraints\Country;
 use Symfony\Component\Validator\Constraints\Currency;
-use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Symfony\Component\Validator\Constraints\Iban;
 use Symfony\Component\Validator\Constraints\Ip;
@@ -23,6 +21,7 @@ use Symfony\Component\Validator\Constraints\LessThan;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\Locale;
 use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Constraints\Timezone;
 use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\Constraints\Uuid;
 use Symfony\Component\Validator\ContainerConstraintValidatorFactory;
@@ -175,7 +174,7 @@ class EntityValidatorTest extends KernelTestCase
         $codes['text'] = [Length::TOO_LONG_ERROR];
 
         $entity->timezone = 'foo';
-        $codes['timezone'] = [Timezone::NO_SUCH_TIMEZONE_ERROR];
+        $codes['timezone'] = [Timezone::TIMEZONE_IDENTIFIER_ERROR];
 
         $entity->uuid = 'foo';
         $codes['uuid'] = [Uuid::INVALID_CHARACTERS_ERROR];
