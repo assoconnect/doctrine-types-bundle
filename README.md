@@ -30,4 +30,4 @@ It also supports nullable and non-nullable fields.
 
 It uses validators from Symfony and [AssoConnect\ValidatorBundle](https://gitlab.com/assoconnect/validator-bundle). 
 
-[How to use](Resources/doc/index.md)
+[How to use](src/Resources/doc/index.md)

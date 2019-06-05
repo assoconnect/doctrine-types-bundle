@@ -23,4 +23,12 @@ class LocaleType extends StringType
     {
         return self::TYPE;
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
+    }
 }

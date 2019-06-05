@@ -5,12 +5,12 @@ namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\DecimalType;
 
-class MoneyType extends DecimalType
+class PercentType extends DecimalType
 {
 
-    const TYPE = 'money';
+    const TYPE = 'percent';
 
-    const DEFAULT_PRECISION = 11;
+    const DEFAULT_PRECISION = 5;
     const DEFAULT_SCALE = 2;
 
     /**
@@ -33,5 +33,13 @@ class MoneyType extends DecimalType
     public function getName()
     {
         return self::TYPE;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
     }
 }

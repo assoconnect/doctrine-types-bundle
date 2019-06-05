@@ -18,11 +18,16 @@
   ],
   "autoload": {
     "psr-4": {
-      "AssoConnect\\DoctrineValidatorBundle\\": ""
+      "AssoConnect\\DoctrineValidatorBundle\\": "src/"
     },
     "exclude-from-classmap": [
-      "/Tests/"
+      "/tests/"
     ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "AssoConnect\\DoctrineValidatorBundle\\Tests\\": "tests/"
+    }
   },
   "require": {
     "assoconnect/validator-bundle": "^1.0",

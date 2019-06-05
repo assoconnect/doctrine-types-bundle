@@ -5,10 +5,10 @@ namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\DecimalType;
 
-class LongitudeType extends DecimalType
+class LatitudeType extends DecimalType
 {
 
-    const TYPE = 'longitude';
+    const TYPE = 'latitude';
 
     const DEFAULT_PRECISION = 9;
     const DEFAULT_SCALE = 6;
@@ -33,5 +33,13 @@ class LongitudeType extends DecimalType
     public function getName()
     {
         return self::TYPE;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
     }
 }

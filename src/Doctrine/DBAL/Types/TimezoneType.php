@@ -5,23 +5,30 @@ namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-class CountryType extends StringType
+class TimezoneType extends StringType
 {
 
-    const TYPE = 'country';
+    const TYPE = 'timezone';
 
     /**
      * @inheritdoc
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        $fieldDeclaration['fixed'] = true;
-        $fieldDeclaration['length'] = 2;
+        $fieldDeclaration['length'] = 30;
         return parent::getSQLDeclaration($fieldDeclaration, $platform);
     }
 
     public function getName()
     {
         return self::TYPE;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
     }
 }

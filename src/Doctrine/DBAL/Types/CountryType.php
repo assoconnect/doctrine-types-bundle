@@ -5,22 +5,31 @@ namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
-class IbanType extends StringType
+class CountryType extends StringType
 {
 
-    const TYPE = 'iban';
-    const LENGTH = 31;
+    const TYPE = 'country';
 
     /**
      * @inheritdoc
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        return 'VARCHAR(' . self::LENGTH . ')';
+        $fieldDeclaration['fixed'] = true;
+        $fieldDeclaration['length'] = 2;
+        return parent::getSQLDeclaration($fieldDeclaration, $platform);
     }
 
     public function getName()
     {
         return self::TYPE;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
     }
 }

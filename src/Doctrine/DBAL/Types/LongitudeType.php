@@ -5,13 +5,13 @@ namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\DecimalType;
 
-class PercentType extends DecimalType
+class LongitudeType extends DecimalType
 {
 
-    const TYPE = 'percent';
+    const TYPE = 'longitude';
 
-    const DEFAULT_PRECISION = 5;
-    const DEFAULT_SCALE = 2;
+    const DEFAULT_PRECISION = 9;
+    const DEFAULT_SCALE = 6;
 
     /**
      * @inheritdoc
@@ -33,5 +33,13 @@ class PercentType extends DecimalType
     public function getName()
     {
         return self::TYPE;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
     }
 }
