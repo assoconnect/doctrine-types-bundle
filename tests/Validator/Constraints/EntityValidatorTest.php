@@ -13,6 +13,7 @@ use AssoConnect\ValidatorBundle\Validator\Constraints\Phone;
 use Symfony\Component\Validator\Constraints\Bic;
 use Symfony\Component\Validator\Constraints\Country;
 use Symfony\Component\Validator\Constraints\Currency;
+use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Symfony\Component\Validator\Constraints\Iban;
 use Symfony\Component\Validator\Constraints\Ip;
@@ -54,6 +55,8 @@ class EntityValidatorTest extends KernelTestCase
 
         $entity->id = 123;
         $entity->bic = 'SOGEFRPP';
+        $entity->bigint = -123456789;
+        $entity->bigintUnsigned = 123456789;
         $entity->boolean = true;
         $entity->country = 'FR';
         $entity->currency = 'EUR';
@@ -75,6 +78,8 @@ class EntityValidatorTest extends KernelTestCase
         $entity->phone = '+33123456789';
         $entity->phonelandline = '+33123456789';
         $entity->phonemobile = '+33623456789';
+        $entity->smallint = -12345;
+        $entity->smallintUnsigned = 12345;
         $entity->string = 'hello';
         $entity->text = 'world';
         $entity->timezone = 'Europe/Paris';
@@ -103,6 +108,12 @@ class EntityValidatorTest extends KernelTestCase
 
         $entity->bic = 'SOGEFRPPA';
         $codes['bic'] = [Bic::INVALID_LENGTH_ERROR];
+
+        $entity->bigint = pow(2, 64);
+        $codes['bigint'] = [LessThanOrEqual::TOO_HIGH_ERROR];
+
+        $entity->bigintUnsigned = -12;
+        $codes['bigintUnsigned'] = [GreaterThan::TOO_LOW_ERROR];
 
         $entity->boolean = 1;
         $codes['boolean'] = [Type::INVALID_TYPE_ERROR];
@@ -166,6 +177,12 @@ class EntityValidatorTest extends KernelTestCase
 
         $entity->phonemobile = '+33123456789';
         $codes['phonemobile'] = [Phone::INVALID_TYPE_ERROR];
+
+        $entity->smallint = pow(2, 16);
+        $codes['smallint'] = [LessThanOrEqual::TOO_HIGH_ERROR];
+
+        $entity->smallintUnsigned = -12;
+        $codes['smallintUnsigned'] = [GreaterThan::TOO_LOW_ERROR];
 
         $entity->string = str_repeat('a', 11);
         $codes['string'] = [Length::TOO_LONG_ERROR];

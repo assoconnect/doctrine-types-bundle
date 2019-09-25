@@ -90,6 +90,18 @@ class EntityValidator extends ConstraintValidator
                 $constraints[] = new Bic();
                 $constraints[] = new Regex('/^[0-9A-Z]+$/');
                 break;
+            case 'bigint':
+                $constraints[] = new Type('integer');
+                if (isset($fieldMapping['options']['unsigned']) &&
+                    true === $fieldMapping['options']['unsigned']
+                ) {
+                    $constraints[] = new GreaterThan(0);
+                    $constraints[] = new LessThanOrEqual(pow(2, 64) - 1);
+                } else {
+                    $constraints[] = new GreaterThanOrEqual(- pow(2, 63));
+                    $constraints[] = new LessThanOrEqual(pow(2, 63) - 1);
+                }
+                break;
             case 'boolean':
                 $constraints[] = new Type('bool');
                 break;
@@ -161,6 +173,18 @@ class EntityValidator extends ConstraintValidator
                 break;
             case 'phonemobile':
                 $constraints[] = new PhoneMobile();
+                break;
+            case 'smallint':
+                $constraints[] = new Type('integer');
+                if (isset($fieldMapping['options']['unsigned']) &&
+                    true === $fieldMapping['options']['unsigned']
+                ) {
+                    $constraints[] = new GreaterThan(0);
+                    $constraints[] = new LessThanOrEqual(pow(2, 16) - 1);
+                } else {
+                    $constraints[] = new GreaterThanOrEqual(- pow(2, 15));
+                    $constraints[] = new LessThanOrEqual(pow(2, 15) - 1);
+                }
                 break;
             case 'string':
                 $length = $fieldMapping['length'] ?? 255;

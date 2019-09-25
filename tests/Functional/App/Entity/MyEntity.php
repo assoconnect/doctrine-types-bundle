@@ -25,6 +25,16 @@ class MyEntity
     public $bic;
 
     /**
+     * @ORM\Column(type="bigint")
+     */
+    public $bigint;
+
+    /**
+     * @ORM\Column(type="bigint", options={"unsigned"=true})
+     */
+    public $bigintUnsigned;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     public $boolean;
@@ -128,6 +138,16 @@ class MyEntity
      * @ORM\Column(type="phonemobile")
      */
     public $phonemobile;
+
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    public $smallint;
+
+    /**
+     * @ORM\Column(type="smallint", options={"unsigned"=true})
+     */
+    public $smallintUnsigned;
 
     /**
      * @ORM\Column(type="string", length=10)
