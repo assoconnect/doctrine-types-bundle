@@ -17,6 +17,7 @@ use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\PercentType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\PhoneLandlineType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\PhoneMobileType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\PhoneType;
+use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\PostalType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\TimezoneType;
 use Ramsey\Uuid\Doctrine\UuidBinaryOrderedTimeType;
 use Symfony\Component\Config\FileLocator;
@@ -49,6 +50,7 @@ class AssoConnectDoctrineValidatorExtension extends Extension implements Prepend
                     'phone' => PhoneType::class,
                     'phonelandline' => PhoneLandlineType::class,
                     'phonemobile' => PhoneMobileType::class,
+                    'postal' => PostalType::class,
                     'timezone' => TimezoneType::class,
                     'uuid_binary_ordered_time' => UuidBinaryOrderedTimeType::class,
                 ],
@@ -69,6 +71,7 @@ class AssoConnectDoctrineValidatorExtension extends Extension implements Prepend
                     'phone' => 'string',
                     'phonelandline' => 'string',
                     'phonemobile' => 'string',
+                    'postal' => 'string',
                     'timezone' => 'string',
                     'uuid_binary_ordered_time' => 'binary',
                 ],
