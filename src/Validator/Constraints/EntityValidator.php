@@ -203,6 +203,8 @@ class EntityValidator extends ConstraintValidator
             case 'uuid_binary_ordered_time':
                 $constraints[] = new Uuid();
                 break;
+            case 'postal':
+                break;
             default:
                 throw new \DomainException('Unsupported field type: ' . $fieldMapping['type']);
                 break;
