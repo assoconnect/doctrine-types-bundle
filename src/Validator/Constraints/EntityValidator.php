@@ -153,7 +153,8 @@ class EntityValidator extends ConstraintValidator
                 $constraints[] = new FloatScale($fieldMapping['scale'] ? : LatitudeType::DEFAULT_SCALE);
                 break;
             case 'locale':
-                $constraints[] = new Locale();
+                $options['canonicalize'] = true;
+                $constraints[] = new Locale($options);
                 break;
             case 'longitude':
                 $constraints[] = new Longitude();
