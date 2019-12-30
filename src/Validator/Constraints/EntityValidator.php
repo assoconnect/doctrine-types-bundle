@@ -97,7 +97,7 @@ class EntityValidator extends ConstraintValidator
                 if (isset($fieldMapping['options']['unsigned']) &&
                     true === $fieldMapping['options']['unsigned']
                 ) {
-                    $constraints[] = new GreaterThan(0);
+                    $constraints[] = new GreaterThanOrEqual(0);
                     $constraints[] = new LessThanOrEqual(pow(2, 64) - 1);
                 } else {
                     $constraints[] = new GreaterThanOrEqual(- pow(2, 63));
