@@ -24,4 +24,12 @@ class PhoneType extends StringType
     {
         return static::TYPE;
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
+    }
 }
