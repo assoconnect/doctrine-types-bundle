@@ -110,10 +110,10 @@ class EntityValidatorTest extends KernelTestCase
         $codes['bic'] = [Bic::INVALID_LENGTH_ERROR];
 
         $entity->bigint = pow(2, 64);
-        $codes['bigint'] = [LessThanOrEqual::TOO_HIGH_ERROR];
+        $codes['bigint'] = [Type::INVALID_TYPE_ERROR, LessThanOrEqual::TOO_HIGH_ERROR];
 
         $entity->bigintUnsigned = -12;
-        $codes['bigintUnsigned'] = [GreaterThan::TOO_LOW_ERROR];
+        $codes['bigintUnsigned'] = [GreaterThanOrEqual::TOO_LOW_ERROR];
 
         $entity->boolean = 1;
         $codes['boolean'] = [Type::INVALID_TYPE_ERROR];
