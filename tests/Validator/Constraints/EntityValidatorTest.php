@@ -8,6 +8,7 @@ use AssoConnect\DoctrineValidatorBundle\Tests\Functional\App\Entity\MyEntity;
 use AssoConnect\DoctrineValidatorBundle\Tests\Functional\App\Entity\MyEntityParent;
 use AssoConnect\DoctrineValidatorBundle\Validator\Constraints\Entity;
 use AssoConnect\DoctrineValidatorBundle\Validator\Constraints\EntityValidator;
+use AssoConnect\PHPDate\AbsoluteDate;
 use AssoConnect\ValidatorBundle\Validator\Constraints\Email;
 use AssoConnect\ValidatorBundle\Validator\Constraints\Phone;
 use Symfony\Component\Validator\Constraints\Bic;
@@ -85,6 +86,7 @@ class EntityValidatorTest extends KernelTestCase
         $entity->timezone = 'Europe/Paris';
         $entity->uuid = '863c9c0f-59db-4ac7-9fd2-787c070b037c';
         $entity->uuid_binary_ordered_time = '6381fbe0-e651-46f5-b171-3f25518bd8e9';
+        $entity->absoluteDate = new AbsoluteDate();
 
         $entity->parentNullable = null;
         $entity->parentNotNullable = new MyEntityParent();
@@ -210,6 +212,9 @@ class EntityValidatorTest extends KernelTestCase
 
         $entity->embeddable = new MyEmbeddable('hello');
         $codes['embeddable.bool'] = [Type::INVALID_TYPE_ERROR];
+
+        $entity->absoluteDate = 'invalid absolute date';
+        $codes['absoluteDate'] = [Type::INVALID_TYPE_ERROR];
 
         $errors = $this->validator->validate($entity, new Entity());
         $errorsPerPath = [];
