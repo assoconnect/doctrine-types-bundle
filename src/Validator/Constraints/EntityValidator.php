@@ -6,6 +6,7 @@ use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\LatitudeType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\LongitudeType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\MoneyType;
 use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\PercentType;
+use AssoConnect\PHPDate\AbsoluteDate;
 use AssoConnect\ValidatorBundle\Validator\Constraints\Email;
 use AssoConnect\ValidatorBundle\Validator\Constraints\FloatScale;
 use AssoConnect\ValidatorBundle\Validator\Constraints\Latitude;
@@ -205,6 +206,9 @@ class EntityValidator extends ConstraintValidator
                 $constraints[] = new Uuid();
                 break;
             case 'postal':
+                break;
+            case 'date_absolute':
+                $constraints[] = new Type(AbsoluteDate::class);
                 break;
             default:
                 throw new \DomainException('Unsupported field type: ' . $fieldMapping['type']);

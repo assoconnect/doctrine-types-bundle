@@ -25,6 +25,7 @@ This Symfony4 bundle provides the integration of [Symfony validation component](
 - timezone
 - uuid
 - uuid_binary_ordered_time
+- date_absolute
 
 It also supports nullable and non-nullable fields.
 

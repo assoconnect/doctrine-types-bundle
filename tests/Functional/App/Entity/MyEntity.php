@@ -203,4 +203,11 @@ class MyEntity
      * @ORM\Embedded(class="MyEmbeddable")
      */
     public $embeddable;
+
+    /**
+     * @var \AssoConnect\PHPDate\AbsoluteDate
+     *
+     * @ORM\Column(type="date_absolute")
+     */
+    public $absoluteDate;
 }
