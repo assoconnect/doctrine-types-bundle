@@ -39,7 +39,7 @@
     "symfony/validator": "^4.0|^5.0",
     "symfony/property-access": "^4.3|^5.0",
     "symfony/intl": "^4.3|^5.0",
-    "assoconnect/php-date-bundle": "^1.1"
+    "assoconnect/php-date-bundle": "^2.0"
   },
   "require-dev": {
     "doctrine/cache": "~1.0",

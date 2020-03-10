@@ -86,7 +86,7 @@ class EntityValidatorTest extends KernelTestCase
         $entity->timezone = 'Europe/Paris';
         $entity->uuid = '863c9c0f-59db-4ac7-9fd2-787c070b037c';
         $entity->uuid_binary_ordered_time = '6381fbe0-e651-46f5-b171-3f25518bd8e9';
-        $entity->absoluteDate = new AbsoluteDate();
+        $entity->absoluteDate = new AbsoluteDate('2020-01-01');
 
         $entity->parentNullable = null;
         $entity->parentNotNullable = new MyEntityParent();

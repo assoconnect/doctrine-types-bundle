@@ -7,6 +7,10 @@ before_script:
   # Install Xdebug
   - pecl install xdebug
   - docker-php-ext-enable xdebug
+  # Install php-intl
+  - apt-get install -y libicu-dev g++
+  - docker-php-ext-configure intl
+  - docker-php-ext-install intl
   # Install composer
   - curl -sS https://getcomposer.org/installer | php
   # Install all project dependencies
