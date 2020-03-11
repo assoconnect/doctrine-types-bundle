@@ -7,7 +7,6 @@ use AssoConnect\DoctrineValidatorBundle\Test\TypeTestCase;
 
 class TimezoneTypeTest extends TypeTestCase
 {
-
     protected function getClass(): string
     {
         return TimezoneType::class;

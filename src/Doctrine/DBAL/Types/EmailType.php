@@ -7,8 +7,7 @@ use Doctrine\DBAL\Types\StringType;
 
 class EmailType extends StringType
 {
-
-    const TYPE = 'email';
+    public const TYPE = 'email';
 
     public function getName()
     {

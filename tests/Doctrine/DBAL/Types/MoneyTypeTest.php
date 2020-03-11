@@ -7,7 +7,6 @@ use AssoConnect\DoctrineValidatorBundle\Test\TypeTestCase;
 
 class MoneyTypeTest extends TypeTestCase
 {
-
     protected function getClass(): string
     {
         return MoneyType::class;

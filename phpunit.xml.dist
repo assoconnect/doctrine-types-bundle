@@ -15,15 +15,15 @@
     </php>
     <testsuites>
         <testsuite name="AssoConnectDoctrineValidatorBundle Test Suite">
-            <directory>./Tests</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./</directory>
             <exclude>
-                <directory>./Resources</directory>
-                <directory>./Tests</directory>
+                <directory>./src/Resources</directory>
+                <directory>./tests</directory>
                 <directory>./vendor</directory>
             </exclude>
         </whitelist>

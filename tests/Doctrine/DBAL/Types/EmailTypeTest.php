@@ -7,7 +7,6 @@ use AssoConnect\DoctrineValidatorBundle\Test\TypeTestCase;
 
 class EmailTypeTest extends TypeTestCase
 {
-
     protected function getClass(): string
     {
         return EmailType::class;

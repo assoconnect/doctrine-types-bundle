@@ -7,7 +7,6 @@ use AssoConnect\DoctrineValidatorBundle\Test\TypeTestCase;
 
 class PercentTypeTest extends TypeTestCase
 {
-
     protected function getClass(): string
     {
         return PercentType::class;

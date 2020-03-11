@@ -7,7 +7,6 @@ use AssoConnect\DoctrineValidatorBundle\Test\TypeTestCase;
 
 class IbanTypeTest extends TypeTestCase
 {
-
     protected function getClass(): string
     {
         return IbanType::class;

@@ -7,7 +7,6 @@ use AssoConnect\DoctrineValidatorBundle\Test\TypeTestCase;
 
 class LongitudeTypeTest extends TypeTestCase
 {
-
     protected function getClass(): string
     {
         return LongitudeType::class;

@@ -3,12 +3,11 @@
 namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\StringType;
 
-class CountryType extends StringType
+class CountryType extends AbstractFixedLengthStringType
 {
-
-    const TYPE = 'country';
+    public const TYPE = 'country';
+    public const LENGTH = 2;
 
     /**
      * @inheritdoc
@@ -16,20 +15,6 @@ class CountryType extends StringType
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
         $fieldDeclaration['fixed'] = true;
-        $fieldDeclaration['length'] = 2;
         return parent::getSQLDeclaration($fieldDeclaration, $platform);
-    }
-
-    public function getName()
-    {
-        return self::TYPE;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function requiresSQLCommentHint(AbstractPlatform $platform)
-    {
-        return true;
     }
 }

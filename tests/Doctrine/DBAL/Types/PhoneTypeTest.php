@@ -7,7 +7,6 @@ use AssoConnect\DoctrineValidatorBundle\Test\TypeTestCase;
 
 class PhoneTypeTest extends TypeTestCase
 {
-
     protected function getClass(): string
     {
         return PhoneType::class;

@@ -7,7 +7,6 @@ use AssoConnect\DoctrineValidatorBundle\Test\TypeTestCase;
 
 class BicTypeTest extends TypeTestCase
 {
-
     protected function getClass(): string
     {
         return BicType::class;
