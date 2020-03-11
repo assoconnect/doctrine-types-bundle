@@ -5,7 +5,7 @@ namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\DecimalType;
 
-class AbstractDecimalType extends DecimalType
+abstract class AbstractDecimalType extends DecimalType
 {
     /**
      * @inheritdoc
