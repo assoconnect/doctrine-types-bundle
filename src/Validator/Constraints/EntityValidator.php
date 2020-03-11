@@ -61,7 +61,6 @@ class EntityValidator extends ConstraintValidator
      */
     public function validate($entity, Constraint $constraint)
     {
-
         $class = get_class($entity);
         $metadata = $this->em->getClassMetadata($class);
         $fields = array_keys($metadata->getReflectionProperties());
@@ -72,7 +71,8 @@ class EntityValidator extends ConstraintValidator
             $constraints = $this->getConstraints($class, $field);
 
             if ($constraints) {
-                // PropertyAccessor will throw an exception if a null value is found on a path (ex: path is date.start but date is NULL)
+                // PropertyAccessor will throw an exception if a null value is found on a path
+                // (ex: path is date.start but date is NULL)
                 try {
                     $value = $propertyAccessor->getValue($entity, $field);
                 } catch (UnexpectedTypeException $exception) {
@@ -96,8 +96,9 @@ class EntityValidator extends ConstraintValidator
             case 'bigint':
                 $constraints[] = new Type('integer');
                 if (
-                    isset($fieldMapping['options']['unsigned'])
-                    && true === $fieldMapping['options']['unsigned']
+
+                    isset($fieldMapping['options']['unsigned']) &&
+                    true === $fieldMapping['options']['unsigned']
                 ) {
                     $constraints[] = new GreaterThanOrEqual(0);
                     $constraints[] = new LessThanOrEqual(pow(2, 64) - 1);
@@ -116,8 +117,6 @@ class EntityValidator extends ConstraintValidator
                 $constraints[] = new Currency();
                 break;
             case 'date':
-                $constraints[] = new Type(\DateTime::class);
-                break;
             case 'datetime':
             case 'datetimetz':
             case 'datetimeutc':
@@ -182,8 +181,8 @@ class EntityValidator extends ConstraintValidator
             case 'smallint':
                 $constraints[] = new Type('integer');
                 if (
-                    isset($fieldMapping['options']['unsigned'])
-                    && true === $fieldMapping['options']['unsigned']
+                    isset($fieldMapping['options']['unsigned']) &&
+                    true === $fieldMapping['options']['unsigned']
                 ) {
                     $constraints[] = new GreaterThan(0);
                     $constraints[] = new LessThanOrEqual(pow(2, 16) - 1);
@@ -243,8 +242,8 @@ class EntityValidator extends ConstraintValidator
             $fieldMapping = $metadata->associationMappings[$field];
 
             if ($fieldMapping['isOwningSide']) {
-                // ToOne
                 if ($fieldMapping['type'] & ClassMetadata::TO_ONE) {
+                    // ToOne
                     $constraints[] = new Type($fieldMapping['targetEntity']);
                     // Nullable field
                     if (
@@ -253,21 +252,15 @@ class EntityValidator extends ConstraintValidator
                     ) {
                         $constraints[] = new NotNull();
                     }
-                }
-
-                // ToMany
-                elseif ($fieldMapping['type'] & ClassMetadata::TO_MANY) {
-                    $constraints[] = new All(
-                        [
+                } elseif ($fieldMapping['type'] & ClassMetadata::TO_MANY) {
+                    // ToMany
+                    $constraints[] = new All([
                         'constraints' => [
                             new Type($fieldMapping['targetEntity']),
                         ],
-                        ]
-                    );
-                }
-
-                // Unknown
-                else {
+                    ]);
+                } else {
+                    // Unknown
                     throw new \DomainException('Unknown type: ' . $fieldMapping['type']);
                 }
             }
