@@ -17,5 +17,5 @@ doctrine:
             App:
                 is_bundle: false
                 type: annotation
-                dir: '%kernel.project_dir%/Tests/Functional/App/Entity'
+                dir: '%kernel.project_dir%/tests/Functional/App/Entity'
                 prefix: 'AssoConnect\DoctrineValidatorBundle\Tests\Functional\App\Entity'
