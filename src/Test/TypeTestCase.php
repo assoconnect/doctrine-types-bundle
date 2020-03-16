@@ -19,7 +19,7 @@ abstract class TypeTestCase extends TestCase
      */
     protected $type;
 
-    abstract protected function getClass() :string;
+    abstract protected function getClass(): string;
 
     protected function setUp(): void
     {

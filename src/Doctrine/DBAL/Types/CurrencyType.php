@@ -33,7 +33,7 @@ class CurrencyType extends Type
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return ($value && $value instanceof Currency)?$value->getCode():null;
+        return ($value && $value instanceof Currency) ? $value->getCode() : null;
     }
 
     /**
@@ -41,7 +41,7 @@ class CurrencyType extends Type
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return $value?new Currency($value):null;
+        return $value ? new Currency($value) : null;
     }
 
     /**

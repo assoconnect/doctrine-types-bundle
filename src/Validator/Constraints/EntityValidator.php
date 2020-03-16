@@ -84,7 +84,7 @@ class EntityValidator extends ConstraintValidator
         }
     }
 
-    protected function getConstraintsForType(array $fieldMapping) :array
+    protected function getConstraintsForType(array $fieldMapping): array
     {
         $constraints = [];
 
@@ -95,8 +95,9 @@ class EntityValidator extends ConstraintValidator
                 break;
             case 'bigint':
                 $constraints[] = new Type('integer');
-                if (isset($fieldMapping['options']['unsigned']) &&
-                    true === $fieldMapping['options']['unsigned']
+                if (
+                    isset($fieldMapping['options']['unsigned'])
+                    && true === $fieldMapping['options']['unsigned']
                 ) {
                     $constraints[] = new GreaterThanOrEqual(0);
                     $constraints[] = new LessThanOrEqual(pow(2, 64) - 1);
@@ -180,8 +181,9 @@ class EntityValidator extends ConstraintValidator
                 break;
             case 'smallint':
                 $constraints[] = new Type('integer');
-                if (isset($fieldMapping['options']['unsigned']) &&
-                    true === $fieldMapping['options']['unsigned']
+                if (
+                    isset($fieldMapping['options']['unsigned'])
+                    && true === $fieldMapping['options']['unsigned']
                 ) {
                     $constraints[] = new GreaterThan(0);
                     $constraints[] = new LessThanOrEqual(pow(2, 16) - 1);
@@ -218,7 +220,7 @@ class EntityValidator extends ConstraintValidator
         return $constraints;
     }
 
-    public function getConstraints(string $class, string $field) :array
+    public function getConstraints(string $class, string $field): array
     {
         $metadata = $this->em->getClassMetadata($class);
 
@@ -245,9 +247,9 @@ class EntityValidator extends ConstraintValidator
                 if ($fieldMapping['type'] & ClassMetadata::TO_ONE) {
                     $constraints[] = new Type($fieldMapping['targetEntity']);
                     // Nullable field
-                    if (isset($fieldMapping['joinColumns'][0]['nullable'])
+                    if (
+                        isset($fieldMapping['joinColumns'][0]['nullable'])
                         && $fieldMapping['joinColumns'][0]['nullable'] === false
-
                     ) {
                         $constraints[] = new NotNull();
                     }
@@ -255,11 +257,13 @@ class EntityValidator extends ConstraintValidator
 
                 // ToMany
                 elseif ($fieldMapping['type'] & ClassMetadata::TO_MANY) {
-                    $constraints[] = new All([
+                    $constraints[] = new All(
+                        [
                         'constraints' => [
                             new Type($fieldMapping['targetEntity']),
                         ],
-                    ]);
+                        ]
+                    );
                 }
 
                 // Unknown
