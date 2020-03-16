@@ -11,9 +11,9 @@ use AssoConnect\DoctrineValidatorBundle\Validator\Constraints\EntityValidator;
 use AssoConnect\PHPDate\AbsoluteDate;
 use AssoConnect\ValidatorBundle\Validator\Constraints\Email;
 use AssoConnect\ValidatorBundle\Validator\Constraints\Phone;
+use Money\Currency;
 use Symfony\Component\Validator\Constraints\Bic;
 use Symfony\Component\Validator\Constraints\Country;
-use Symfony\Component\Validator\Constraints\Currency;
 use Symfony\Component\Validator\Constraints\GreaterThan;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 use Symfony\Component\Validator\Constraints\Iban;
@@ -29,6 +29,7 @@ use Symfony\Component\Validator\Constraints\Uuid;
 use Symfony\Component\Validator\ContainerConstraintValidatorFactory;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Constraints\Currency as CurrencyConstraint;
 
 class EntityValidatorTest extends KernelTestCase
 {
@@ -60,7 +61,7 @@ class EntityValidatorTest extends KernelTestCase
         $entity->bigintUnsigned = 123456789;
         $entity->boolean = true;
         $entity->country = 'FR';
-        $entity->currency = 'EUR';
+        $entity->currency = new Currency('EUR');
         $entity->date = new \DateTime();
         $entity->datetime = new \DateTime();
         $entity->decimal = 99.999;
@@ -124,7 +125,7 @@ class EntityValidatorTest extends KernelTestCase
         $codes['country'] = [Country::NO_SUCH_COUNTRY_ERROR];
 
         $entity->currency = 'foo';
-        $codes['currency'] = [Currency::NO_SUCH_CURRENCY_ERROR];
+        $codes['currency'] = [CurrencyConstraint::NO_SUCH_CURRENCY_ERROR];
 
         $entity->date = 'hello';
         $codes['date'] = [Type::INVALID_TYPE_ERROR];
