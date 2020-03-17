@@ -30,7 +30,7 @@
     }
   },
   "require": {
-    "assoconnect/validator-bundle": "^1.0",
+    "assoconnect/validator-bundle": "^v1.0|^v2.0",
     "austinsmorris/doctrine-dbal-datetimeutc": "^2.0",
     "moneyphp/money": "^v3.0",
     "doctrine/dbal": "^2.8",
