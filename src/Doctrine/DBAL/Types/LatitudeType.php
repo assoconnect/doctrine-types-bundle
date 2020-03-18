@@ -1,6 +1,6 @@
 <?php
 
-namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
+namespace AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types;
 
 class LatitudeType extends AbstractDecimalType
 {

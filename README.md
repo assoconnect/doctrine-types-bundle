@@ -1,4 +1,4 @@
-# AssoConnectDoctrineValidatorBundle
+# AssoConnectDoctrineTypesBundle
 
 [![Build status](https://gitlab.com/assoconnect/doctrine-validator-bundle/badges/master/build.svg)](https://gitlab.com/assoconnect/doctrine-validator-bundle/commits/master)
 [![Overall test coverage](https://gitlab.com/assoconnect/doctrine-validator-bundle/badges/master/coverage.svg)](https://gitlab.com/assoconnect/doctrine-validator-bundle/pipelines)
@@ -28,7 +28,3 @@ This Symfony4 bundle provides the integration of [Symfony validation component](
 - date_absolute
 
 It also supports nullable and non-nullable fields.
-
-It uses validators from Symfony and [AssoConnect\ValidatorBundle](https://gitlab.com/assoconnect/validator-bundle). 
-
-[How to use](src/Resources/doc/index.md)

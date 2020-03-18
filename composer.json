@@ -1,9 +1,9 @@
 {
-  "name": "assoconnect/doctrine-validator-bundle",
-  "description": "Custom Symfony validator for Doctrine entities.",
+  "name": "assoconnect/doctrine-types-bundle",
+  "description": "Custom Doctrine Types.",
   "type": "symfony-bundle",
   "license": "MIT",
-  "keywords": ["Doctrine", "Validation"],
+  "keywords": ["Doctrine", "Types"],
   "authors": [
     {
       "name": "AssoConnect",
@@ -14,11 +14,14 @@
     },
     {
       "name": "Julien Waguet"
+    },
+    {
+      "name": "Tristan Pouliquen"
     }
   ],
   "autoload": {
     "psr-4": {
-      "AssoConnect\\DoctrineValidatorBundle\\": "src/"
+      "AssoConnect\\DoctrineTypesBundle\\": "src/"
     },
     "exclude-from-classmap": [
       "/tests/"
@@ -26,19 +29,16 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "AssoConnect\\DoctrineValidatorBundle\\Tests\\": "tests/"
+      "AssoConnect\\DoctrineTypesBundle\\Tests\\": "tests/"
     }
   },
   "require": {
-    "assoconnect/validator-bundle": "^v1.0|^v2.0",
     "austinsmorris/doctrine-dbal-datetimeutc": "^2.0",
     "moneyphp/money": "^v3.0",
     "doctrine/dbal": "^2.8",
     "doctrine/doctrine-bundle": "^1.9|^2.0",
     "php": "^7.1",
     "ramsey/uuid-doctrine": "^1.4",
-    "symfony/validator": "^4.0|^5.0",
-    "symfony/property-access": "^4.3|^5.0",
     "symfony/intl": "^4.3|^5.0",
     "assoconnect/php-date-bundle": "^2.0"
   },

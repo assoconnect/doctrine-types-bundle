@@ -14,7 +14,7 @@
         <env name="APP_DEBUG" value="1" />
     </php>
     <testsuites>
-        <testsuite name="AssoConnectDoctrineValidatorBundle Test Suite">
+        <testsuite name="AssoConnectDoctrineTypesBundle Test Suite">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>

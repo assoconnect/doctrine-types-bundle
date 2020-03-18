@@ -1,9 +1,9 @@
 <?php
 
-namespace AssoConnect\DoctrineValidatorBundle\Tests\Doctrine\DBAL\Types;
+namespace AssoConnect\DoctrineTypesBundle\Tests\Doctrine\DBAL\Types;
 
-use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\TimezoneType;
-use AssoConnect\DoctrineValidatorBundle\Test\TypeTestCase;
+use AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types\TimezoneType;
+use AssoConnect\DoctrineTypesBundle\Tests\TypeTestCase;
 
 class TimezoneTypeTest extends TypeTestCase
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace AssoConnect\DoctrineValidatorBundle\Tests\Doctrine\DBAL\Types;
+namespace AssoConnect\DoctrineTypesBundle\Tests\Doctrine\DBAL\Types;
 
-use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\PhoneType;
-use AssoConnect\DoctrineValidatorBundle\Test\TypeTestCase;
+use AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types\PhoneType;
+use AssoConnect\DoctrineTypesBundle\Tests\TypeTestCase;
 
 class PhoneTypeTest extends TypeTestCase
 {

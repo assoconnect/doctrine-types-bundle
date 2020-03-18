@@ -1,6 +1,6 @@
 <?php
 
-namespace AssoConnect\DoctrineValidatorBundle\Test;
+namespace AssoConnect\DoctrineTypesBundle\Tests;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
