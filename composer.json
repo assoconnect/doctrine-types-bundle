@@ -43,7 +43,14 @@
   "require-dev": {
     "doctrine/cache": "~1.0",
     "doctrine/annotations": "~1.0",
+    "phpunit/phpunit": "^7.0",
     "symfony/framework-bundle": "^4.3|^5.0",
-    "symfony/yaml": "^4.3|^5.0"
+    "symfony/yaml": "^4.3|^5.0",
+    "friendsofphp/php-cs-fixer": "^2.16",
+    "squizlabs/php_codesniffer": "^3.5"
+  },
+  "scripts": {
+    "lint": "./vendor/bin/phpcs && ./vendor/bin/php-cs-fixer fix",
+    "test": "./vendor/bin/phpunit"
   }
 }
