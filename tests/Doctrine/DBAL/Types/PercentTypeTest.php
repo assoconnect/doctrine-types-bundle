@@ -12,7 +12,7 @@ class PercentTypeTest extends TypeTestCase
         return PercentType::class;
     }
 
-    public function test_getName()
+    public function testGetName()
     {
         $this->assertSame(PercentType::TYPE, $this->type->getName());
     }

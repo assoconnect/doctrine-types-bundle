@@ -12,7 +12,7 @@ class PhoneTypeTest extends TypeTestCase
         return PhoneType::class;
     }
 
-    public function test_getName()
+    public function testGetName()
     {
         $this->assertSame(PhoneType::TYPE, $this->type->getName());
     }

@@ -12,7 +12,7 @@ class MoneyTypeTest extends TypeTestCase
         return MoneyType::class;
     }
 
-    public function test_getName()
+    public function testGetName()
     {
         $this->assertSame(MoneyType::TYPE, $this->type->getName());
     }

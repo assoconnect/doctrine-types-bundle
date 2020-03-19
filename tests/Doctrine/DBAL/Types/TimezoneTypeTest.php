@@ -12,7 +12,7 @@ class TimezoneTypeTest extends TypeTestCase
         return TimezoneType::class;
     }
 
-    public function test_getName()
+    public function testGetName()
     {
         $this->assertSame(TimezoneType::TYPE, $this->type->getName());
     }

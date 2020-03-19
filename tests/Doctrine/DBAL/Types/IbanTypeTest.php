@@ -12,7 +12,7 @@ class IbanTypeTest extends TypeTestCase
         return IbanType::class;
     }
 
-    public function test_getName()
+    public function testGetName()
     {
         $this->assertSame(IbanType::TYPE, $this->type->getName());
     }

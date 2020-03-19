@@ -12,7 +12,7 @@ class PhoneLandlineTypeTest extends TypeTestCase
         return PhoneLandlineType::class;
     }
 
-    public function test_getName()
+    public function testGetName()
     {
         $this->assertSame(PhoneLandlineType::TYPE, $this->type->getName());
     }

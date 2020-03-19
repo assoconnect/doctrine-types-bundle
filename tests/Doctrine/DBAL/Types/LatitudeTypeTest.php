@@ -12,7 +12,7 @@ class LatitudeTypeTest extends TypeTestCase
         return LatitudeType::class;
     }
 
-    public function test_getName()
+    public function testGetName()
     {
         $this->assertSame(LatitudeType::TYPE, $this->type->getName());
     }

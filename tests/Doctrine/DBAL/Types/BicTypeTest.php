@@ -12,7 +12,7 @@ class BicTypeTest extends TypeTestCase
         return BicType::class;
     }
 
-    public function test_getName()
+    public function testGetName()
     {
         $this->assertSame(BicType::TYPE, $this->type->getName());
     }

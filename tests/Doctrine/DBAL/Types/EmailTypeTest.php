@@ -12,7 +12,7 @@ class EmailTypeTest extends TypeTestCase
         return EmailType::class;
     }
 
-    public function test_getName()
+    public function testGetName()
     {
         $this->assertSame(EmailType::TYPE, $this->type->getName());
     }
