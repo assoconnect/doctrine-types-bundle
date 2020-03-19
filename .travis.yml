@@ -1,8 +1,11 @@
 language: php
 php: 7.2
 
+git:
+  depth: 3
+
 install:
-  - composer install --dev --ansi --prefer-dist --no-interaction --optimize-autoloader --no-suggest --no-progress
+  - composer install --ansi --prefer-dist --no-interaction --optimize-autoloader --no-suggest --no-progress
 
 scripts:
   - composer lint
