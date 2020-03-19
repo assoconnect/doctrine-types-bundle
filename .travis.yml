@@ -2,10 +2,7 @@ language: php
 php:
   - 7.1
   - 7.2
-install:
-  - composer global require friendsofphp/php-cs-fixer squizlabs/php_codesniffer phpunit/phpunit
 
-script:
-  - phpunit
-  - php-cs-fixer fix
-  - phpcs
+scripts:
+  - composer lint
+  - composer test
