@@ -2,6 +2,7 @@
 
 namespace AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types;
 
+use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Money\Currency;
 
 class CurrencyType extends AbstractFixedLengthStringType
