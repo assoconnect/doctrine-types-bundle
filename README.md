@@ -1,30 +1,23 @@
 # AssoConnectDoctrineTypesBundle
 
-[![Build status](https://gitlab.com/assoconnect/doctrine-validator-bundle/badges/master/build.svg)](https://gitlab.com/assoconnect/doctrine-validator-bundle/commits/master)
-[![Overall test coverage](https://gitlab.com/assoconnect/doctrine-validator-bundle/badges/master/coverage.svg)](https://gitlab.com/assoconnect/doctrine-validator-bundle/pipelines)
-
+![Build status](https://travis-ci.org/assoconnect/doctrine-validator-bundle.svg?branch=master)
 
 This Symfony4 bundle provides the integration of [Symfony validation component](https://symfony.com/doc/current/validation.html) with [Doctrine entity custom type](https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/cookbook/custom-mapping-types.html) to avoid duplicate code for the following types:
-- bic
-- boolean
-- currency
-- date
-- datetime
-- email
-- float
-- latitude
-- longitude
-- iban
-- integer
-- ip
-- money
-- percent
-- phone (both landline & mobile)
-- string
-- text
-- timezone
-- uuid
-- uuid_binary_ordered_time
-- date_absolute
+- [Bic](/src/Doctrine/DBAL/Types/BicType.php)
+- [Country](/src/Doctrine/DBAL/Types/CountryType.php)
+- [Currency](/src/Doctrine/DBAL/Types/CurrencyType.php)
+- [Email](/src/Doctrine/DBAL/Types/EmailType.php)
+- [Iban](/src/Doctrine/DBAL/Types/IbanType.php)
+- [Ip](/src/Doctrine/DBAL/Types/IpType.php)
+- [Latitude](/src/Doctrine/DBAL/Types/LatitudeType.php)
+- [Locale](/src/Doctrine/DBAL/Types/LocaleType.php)
+- [Longitude](/src/Doctrine/DBAL/Types/LongitudeType.php)
+- [Money](/src/Doctrine/DBAL/Types/MoneyType.php)
+- [Percent](/src/Doctrine/DBAL/Types/PercentType.php)
+- [PhoneLandline](/src/Doctrine/DBAL/Types/PhoneLandlineType.php)
+- [PhoneMobile](/src/Doctrine/DBAL/Types/PhoneMobileType.php)
+- [Phone](/src/Doctrine/DBAL/Types/PhoneType.php)
+- [Postal](/src/Doctrine/DBAL/Types/PostalType.php)
+- [Timezone](/src/Doctrine/DBAL/Types/TimezoneType.php)
 
 It also supports nullable and non-nullable fields.
