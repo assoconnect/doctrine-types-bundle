@@ -36,7 +36,7 @@
     "austinsmorris/doctrine-dbal-datetimeutc": "^2.0",
     "moneyphp/money": "^v3.0",
     "doctrine/dbal": "^2.8",
-    "php": "^7.1",
+    "php": "^7.2",
     "ramsey/uuid-doctrine": "^1.4",
     "assoconnect/php-date-bundle": "^2.0"
   },
