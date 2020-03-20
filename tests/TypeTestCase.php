@@ -2,15 +2,15 @@
 
 namespace AssoConnect\DoctrineTypesBundle\Tests;
 
-use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 abstract class TypeTestCase extends TestCase
 {
 
     /**
-     * @var AbstractPlatform
+     * @var MockObject
      */
     protected $abstractPlatform;
 
@@ -23,7 +23,15 @@ abstract class TypeTestCase extends TestCase
 
     protected function setUp(): void
     {
-        $this->abstractPlatform = $this->getMockForAbstractClass('Doctrine\DBAL\Platforms\AbstractPlatform');
+        $this->abstractPlatform = $this->getMockForAbstractClass(
+            'Doctrine\DBAL\Platforms\AbstractPlatform',
+            array(),
+            '',
+            true,
+            true,
+            true,
+            array('getVarcharTypeDeclarationSQL', 'getDecimalTypeDeclarationSQL')
+        );
 
         $class = $this->getClass();
         $name = $class::TYPE;
@@ -33,5 +41,13 @@ abstract class TypeTestCase extends TestCase
         }
 
         $this->type = Type::getType($name);
+    }
+
+    /**
+     * This test is to be done by default because all custom types normally need a Doctrine comment
+     */
+    public function testRequiresSQLCommentHint()
+    {
+        $this->assertTrue($this->type->requiresSQLCommentHint($this->abstractPlatform));
     }
 }
