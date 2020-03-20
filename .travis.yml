@@ -4,6 +4,10 @@ php: 7.2
 git:
   depth: 3
 
+addons:
+  sonarcloud:
+    organization: "assoconnect"
+
 cache:
   directories:
     - $HOME/.composer/cache/files
@@ -13,4 +17,5 @@ install:
 
 scripts:
   - composer lint
-  - composer test
+  - composer test-coverage
+  - 'if [ ! -z "$SONAR_TOKEN" ]; then sonar-scanner; fi'

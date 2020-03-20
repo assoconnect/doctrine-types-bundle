@@ -51,6 +51,7 @@
   },
   "scripts": {
     "lint": "./vendor/bin/phpcs && ./vendor/bin/php-cs-fixer fix",
-    "test": "./vendor/bin/phpunit"
+    "test": "./vendor/bin/phpunit",
+    "test-coverage": "./vendor/bin/phpunit --coverage-clover ./coverage/logs/clover.xml --log-junit ./coverage/logs/phpunit.report.xml"
   }
 }
