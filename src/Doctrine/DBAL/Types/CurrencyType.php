@@ -1,32 +1,14 @@
 <?php
 
-namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
+namespace AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\Type;
 use Money\Currency;
 
-class CurrencyType extends Type
+class CurrencyType extends AbstractFixedLengthStringType
 {
-
-    const TYPE = 'currency';
-
-    /**
-     * @inheritdoc
-     */
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
-    {
-        $fieldDeclaration['length'] = 3;
-        return $platform->getVarcharTypeDeclarationSQL($fieldDeclaration);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getName()
-    {
-        return self::TYPE;
-    }
+    public const TYPE = 'currency';
+    public const LENGTH = 3;
 
     /**
      * @inheritdoc
@@ -42,13 +24,5 @@ class CurrencyType extends Type
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
         return $value ? new Currency($value) : null;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function requiresSQLCommentHint(AbstractPlatform $platform)
-    {
-        return true;
     }
 }

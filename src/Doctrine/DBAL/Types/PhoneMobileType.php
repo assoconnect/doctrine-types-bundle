@@ -1,8 +1,8 @@
 <?php
 
-namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
+namespace AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types;
 
 class PhoneMobileType extends PhoneType
 {
-    const TYPE = 'phonemobile';
+    public const TYPE = 'phonemobile';
 }

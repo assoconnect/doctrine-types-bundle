@@ -1,14 +1,13 @@
 <?php
 
-namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
+namespace AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 
 class EmailType extends StringType
 {
-
-    const TYPE = 'email';
+    public const TYPE = 'email';
 
     public function getName()
     {

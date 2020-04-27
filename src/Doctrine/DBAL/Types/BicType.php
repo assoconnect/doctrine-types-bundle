@@ -1,34 +1,9 @@
 <?php
 
-namespace AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types;
+namespace AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types;
 
-use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\StringType;
-
-class BicType extends StringType
+class BicType extends AbstractFixedLengthStringType
 {
-
-    const TYPE = 'bic';
-    const LENGTH = 11;
-
-    /**
-     * @inheritdoc
-     */
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
-    {
-        return 'VARCHAR(' . self::LENGTH . ')';
-    }
-
-    public function getName()
-    {
-        return self::TYPE;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function requiresSQLCommentHint(AbstractPlatform $platform)
-    {
-        return true;
-    }
+    public const TYPE = 'bic';
+    public const LENGTH = 11;
 }

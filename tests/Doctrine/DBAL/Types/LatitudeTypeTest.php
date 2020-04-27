@@ -1,20 +1,26 @@
 <?php
 
-namespace AssoConnect\DoctrineValidatorBundle\Tests\Doctrine\DBAL\Types;
+namespace AssoConnect\DoctrineTypesBundle\Tests\Doctrine\DBAL\Types;
 
-use AssoConnect\DoctrineValidatorBundle\Doctrine\DBAL\Types\LatitudeType;
-use AssoConnect\DoctrineValidatorBundle\Test\TypeTestCase;
+use AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types\LatitudeType;
+use AssoConnect\DoctrineTypesBundle\Tests\TypeTestCase;
 
 class LatitudeTypeTest extends TypeTestCase
 {
-
     protected function getClass(): string
     {
         return LatitudeType::class;
     }
 
-    public function test_getName()
+    public function testGetName()
     {
         $this->assertSame(LatitudeType::TYPE, $this->type->getName());
+    }
+
+    public function testGetSQLDeclaration()
+    {
+        $this->abstractPlatform->method("getDecimalTypeDeclarationSQL")->willReturn("DECIMAL");
+
+        $this->assertSame("DECIMAL", $this->type->getSQLDeclaration([], $this->abstractPlatform));
     }
 }
