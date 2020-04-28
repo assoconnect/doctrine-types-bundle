@@ -16,7 +16,8 @@
       "name": "Julien Waguet"
     },
     {
-      "name": "Tristan Pouliquen"
+      "name": "Tristan Pouliquen",
+      "email": "tristan.pouliquen@yahoo.fr"
     }
   ],
   "autoload": {
