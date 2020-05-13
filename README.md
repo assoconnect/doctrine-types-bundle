@@ -20,5 +20,7 @@ This Symfony4 bundle provides the integration of [Symfony validation component](
 - [Phone](/src/Doctrine/DBAL/Types/PhoneType.php)
 - [Postal](/src/Doctrine/DBAL/Types/PostalType.php)
 - [Timezone](/src/Doctrine/DBAL/Types/TimezoneType.php)
+- [FrenchRna](/src/Doctrine/DBAL/Types/FrenchRnaType.php)
+- [FrenchSiren](/src/Doctrine/DBAL/Types/FrenchSirenType.php)
 
 It also supports nullable and non-nullable fields.
