@@ -6,6 +6,6 @@ namespace AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types;
 
 class FrenchSirenType extends AbstractFixedLengthStringType
 {
-    public const TYPE = 'frenchsiren';
+    public const TYPE = 'frenchSiren';
     public const LENGTH = 9;
 }
