@@ -34,7 +34,7 @@
     }
   },
   "require": {
-    "austinsmorris/doctrine-dbal-datetimeutc": "^2.0",
+    "austinsmorris/doctrine-dbal-datetimeutc": "^2.0|dev-*",
     "moneyphp/money": "^v3.0",
     "doctrine/dbal": "^2.8",
     "php": "^7.2",
