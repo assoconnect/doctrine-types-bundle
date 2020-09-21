@@ -14,7 +14,6 @@ This Symfony4 bundle provides the integration of [Symfony validation component](
 - [Locale](/src/Doctrine/DBAL/Types/LocaleType.php)
 - [Longitude](/src/Doctrine/DBAL/Types/LongitudeType.php)
 - [Money](/src/Doctrine/DBAL/Types/MoneyType.php)
-- [Percent](/src/Doctrine/DBAL/Types/PercentType.php)
 - [PhoneLandline](/src/Doctrine/DBAL/Types/PhoneLandlineType.php)
 - [PhoneMobile](/src/Doctrine/DBAL/Types/PhoneMobileType.php)
 - [Phone](/src/Doctrine/DBAL/Types/PhoneType.php)
