@@ -1,7 +1,7 @@
 # AssoConnectDoctrineTypesBundle
 
-[![Build Status](https://travis-ci.org/assoconnect/doctrine-validator-bundle.svg?branch=master)](https://travis-ci.org/assoconnect/doctrine-validator-bundle)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=assoconnect_doctrine-validator-bundle&metric=coverage)](https://sonarcloud.io/dashboard?id=assoconnect_doctrine-validator-bundle)
+[![Build Status](https://travis-ci.org/assoconnect/doctrine-types-bundle.svg?branch=master)](https://travis-ci.org/assoconnect/doctrine-types-bundle)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=assoconnect_doctrine-types-bundle&metric=coverage)](https://sonarcloud.io/dashboard?id=assoconnect_doctrine-types-bundle)
 
 This Symfony4 bundle provides the integration of [Symfony validation component](https://symfony.com/doc/current/validation.html) with [Doctrine entity custom type](https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/cookbook/custom-mapping-types.html) to avoid duplicate code for the following types:
 - [Bic](/src/Doctrine/DBAL/Types/BicType.php)
