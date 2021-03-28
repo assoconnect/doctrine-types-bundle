@@ -1,4 +1,4 @@
+/vendor/*
+.phpunit.result.cache
 .idea
-vendor
-coverage
 .php_cs.cache
