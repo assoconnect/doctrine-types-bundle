@@ -1,0 +1,46 @@
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      
+      - uses: shivammathur/setup-php@2.10.0
+        with:
+          php-version: '7.4'
+      
+      - run: composer validate --strict
+      
+      - run: composer install --prefer-dist --no-progress --no-suggest
+      
+      - run: vendor/bin/phpcs
+      
+      - run: XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover ./clover.xml --log-junit ./phpunit.report.xml
+      
+      # https://community.sonarsource.com/t/code-coverage-doesnt-work-with-github-action/16747
+      # $GITHUB_WORKSPACE contains a slash so @ is used as delimiter
+      - run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' clover.xml
+      - run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' phpunit.report.xml
+      
+      - uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectName=doctrine-types-bundle
+            -Dsonar.projectKey=assoconnect_doctrine-types-bundle
+            -Dsonar.organization=assoconnect
+            -Dsonar.sources=src
+            -Dsonar.tests=tests
+            -Dsonar.php.coverage.reportPaths=clover.xml
+            -Dsonar.php.tests.reportPath=phpunit.report.xml
