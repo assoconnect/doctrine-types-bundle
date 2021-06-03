@@ -1,6 +1,6 @@
 # AssoConnectDoctrineTypesBundle
 
-[![Build Status](https://travis-ci.org/assoconnect/doctrine-types-bundle.svg?branch=master)](https://travis-ci.org/assoconnect/doctrine-types-bundle)
+[![Build Status](https://github.com/assoconnect/doctrine-types-bundle/actions/workflows/build.yml/badge.svg)](https://github.com/assoconnect/doctrine-types-bundle/actions/workflows/build.yml)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=assoconnect_doctrine-types-bundle&metric=coverage)](https://sonarcloud.io/dashboard?id=assoconnect_doctrine-types-bundle)
 
 This Symfony4 bundle provides the integration of [Symfony validation component](https://symfony.com/doc/current/validation.html) with [Doctrine entity custom type](https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/cookbook/custom-mapping-types.html) to avoid duplicate code for the following types:
