@@ -7,15 +7,25 @@ use Money\Currency;
 
 class CurrencyType extends AbstractFixedLengthStringType
 {
-    public const TYPE = 'currency';
+    public const NAME = 'currency';
     public const LENGTH = 3;
+
+    public function getName(): string
+    {
+        return self::NAME;
+    }
+
+    protected function getLength(): int
+    {
+        return self::LENGTH;
+    }
 
     /**
      * @inheritdoc
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return ($value && $value instanceof Currency) ? $value->getCode() : null;
+        return ($value instanceof Currency) ? $value->getCode() : null;
     }
 
     /**
@@ -23,6 +33,6 @@ class CurrencyType extends AbstractFixedLengthStringType
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        return $value ? new Currency($value) : null;
+        return is_string($value) && '' !== $value ? new Currency($value) : null;
     }
 }

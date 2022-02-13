@@ -12,14 +12,11 @@ abstract class AbstractFixedLengthStringType extends Type
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        $fieldDeclaration['length'] = static::LENGTH;
+        $fieldDeclaration['length'] = $this->getLength();
         return $platform->getVarcharTypeDeclarationSQL($fieldDeclaration);
     }
 
-    public function getName()
-    {
-        return static::TYPE;
-    }
+    abstract protected function getLength(): int;
 
     /**
      * @inheritdoc

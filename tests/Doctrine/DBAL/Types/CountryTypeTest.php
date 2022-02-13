@@ -12,18 +12,18 @@ class CountryTypeTest extends TypeTestCase
         return CountryType::class;
     }
 
-    public function testGetName()
+    public function testGetName(): void
     {
-        $this->assertSame(CountryType::TYPE, $this->type->getName());
+        self::assertSame(CountryType::NAME, $this->type->getName());
     }
 
-    public function testGetSQLDeclaration()
+    public function testGetSQLDeclaration(): void
     {
         $this->abstractPlatform
             ->method('getVarcharTypeDeclarationSQL')
             ->with(['fixed' => true, 'length' => CountryType::LENGTH])
             ->willReturn("VARCHAR");
 
-        $this->assertSame("VARCHAR", $this->type->getSQLDeclaration([], $this->abstractPlatform));
+        self::assertSame("VARCHAR", $this->type->getSQLDeclaration([], $this->abstractPlatform));
     }
 }

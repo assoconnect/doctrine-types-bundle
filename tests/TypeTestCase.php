@@ -2,29 +2,29 @@
 
 namespace AssoConnect\DoctrineTypesBundle\Tests;
 
+use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 abstract class TypeTestCase extends TestCase
 {
-
     /**
-     * @var MockObject
+     * @var MockObject|AbstractPlatform
      */
     protected $abstractPlatform;
 
-    /**
-     * @var Type
-     */
-    protected $type;
+    protected Type $type;
 
+    /**
+     * @return class-string<Type>
+     */
     abstract protected function getClass(): string;
 
     protected function setUp(): void
     {
         $this->abstractPlatform = $this->getMockForAbstractClass(
-            'Doctrine\DBAL\Platforms\AbstractPlatform',
+            AbstractPlatform::class,
             array(),
             '',
             true,
@@ -34,7 +34,7 @@ abstract class TypeTestCase extends TestCase
         );
 
         $class = $this->getClass();
-        $name = $class::TYPE;
+        $name = $class::NAME;
 
         if (!Type::hasType($name)) {
             Type::addType($name, $class);
@@ -46,8 +46,8 @@ abstract class TypeTestCase extends TestCase
     /**
      * This test is to be done by default because all custom types normally need a Doctrine comment
      */
-    public function testRequiresSQLCommentHint()
+    public function testRequiresSQLCommentHint(): void
     {
-        $this->assertTrue($this->type->requiresSQLCommentHint($this->abstractPlatform));
+        self::assertTrue($this->type->requiresSQLCommentHint($this->abstractPlatform));
     }
 }

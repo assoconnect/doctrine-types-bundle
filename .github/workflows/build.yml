@@ -8,21 +8,26 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        php-versions: ['7.4', '8.0', '8.1']
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       
-      - uses: shivammathur/setup-php@2.10.0
+      - uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: ${{ matrix.php-versions }}
       
       - run: composer validate --strict
       
       - run: composer install --prefer-dist --no-progress --no-suggest
       
       - run: vendor/bin/phpcs
+
+      - run: vendor/bin/phpstan
       
       - run: XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover ./clover.xml --log-junit ./phpunit.report.xml
       

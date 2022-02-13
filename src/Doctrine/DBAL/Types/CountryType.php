@@ -6,8 +6,18 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 class CountryType extends AbstractFixedLengthStringType
 {
-    public const TYPE = 'country';
+    public const NAME = 'country';
     public const LENGTH = 2;
+
+    public function getName(): string
+    {
+        return self::NAME;
+    }
+
+    protected function getLength(): int
+    {
+        return self::LENGTH;
+    }
 
     /**
      * @inheritdoc
