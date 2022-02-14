@@ -9,6 +9,16 @@ namespace AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types;
  */
 class AbsolutePercentValueType extends AbstractFixedLengthStringType
 {
-    public const TYPE = 'absolute_percent_value';
+    public const NAME = 'absolute_percent_value';
     public const LENGTH = 255;
+
+    public function getName(): string
+    {
+        return self::NAME;
+    }
+
+    protected function getLength(): int
+    {
+        return self::LENGTH;
+    }
 }

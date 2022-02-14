@@ -12,15 +12,15 @@ class LatitudeTypeTest extends TypeTestCase
         return LatitudeType::class;
     }
 
-    public function testGetName()
+    public function testGetName(): void
     {
-        $this->assertSame(LatitudeType::TYPE, $this->type->getName());
+        self::assertSame(LatitudeType::NAME, $this->type->getName());
     }
 
-    public function testGetSQLDeclaration()
+    public function testGetSQLDeclaration(): void
     {
         $this->abstractPlatform->method("getDecimalTypeDeclarationSQL")->willReturn("DECIMAL");
 
-        $this->assertSame("DECIMAL", $this->type->getSQLDeclaration([], $this->abstractPlatform));
+        self::assertSame("DECIMAL", $this->type->getSQLDeclaration([], $this->abstractPlatform));
     }
 }

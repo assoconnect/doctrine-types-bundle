@@ -7,26 +7,21 @@ use Doctrine\DBAL\Types\DecimalType;
 
 abstract class AbstractDecimalType extends DecimalType
 {
+    abstract protected function getDefaultPrecision(): int;
+    abstract protected function getDefaultScale(): int;
+
     /**
      * @inheritdoc
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
         if (!isset($fieldDeclaration['precision'])) {
-            $fieldDeclaration['precision'] = static::DEFAULT_PRECISION;
+            $fieldDeclaration['precision'] = $this->getDefaultPrecision();
         }
         if (!isset($fieldDeclaration['scale'])) {
-            $fieldDeclaration['scale'] = static::DEFAULT_SCALE;
+            $fieldDeclaration['scale'] = $this->getDefaultScale();
         }
         return parent::getSQLDeclaration($fieldDeclaration, $platform);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getName()
-    {
-        return static::TYPE;
     }
 
     /**

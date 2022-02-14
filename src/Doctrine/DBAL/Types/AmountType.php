@@ -10,6 +10,16 @@ namespace AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types;
  */
 class AmountType extends AbstractFixedLengthStringType
 {
-    public const TYPE = 'amount';
+    public const NAME = 'amount';
     public const LENGTH = 255;
+
+    public function getName(): string
+    {
+        return self::NAME;
+    }
+
+    protected function getLength(): int
+    {
+        return self::LENGTH;
+    }
 }

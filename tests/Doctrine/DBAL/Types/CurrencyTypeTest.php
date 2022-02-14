@@ -13,37 +13,37 @@ class CurrencyTypeTest extends TypeTestCase
         return CurrencyType::class;
     }
 
-    public function testGetName()
+    public function testGetName(): void
     {
-        $this->assertSame(CurrencyType::TYPE, $this->type->getName());
+        self::assertSame(CurrencyType::NAME, $this->type->getName());
     }
 
-    public function testConvertToDatabaseValueValid()
+    public function testConvertToDatabaseValueValid(): void
     {
         $value = new Currency('EUR');
-        $this->assertSame('EUR', $this->type->convertToDatabaseValue($value, $this->abstractPlatform));
+        self::assertSame('EUR', $this->type->convertToDatabaseValue($value, $this->abstractPlatform));
     }
 
-    public function testConvertToDatabaseValueNull()
+    public function testConvertToDatabaseValueNull(): void
     {
-        $this->assertNull($this->type->convertToDatabaseValue(null, $this->abstractPlatform));
+        self::assertNull($this->type->convertToDatabaseValue(null, $this->abstractPlatform));
     }
 
-    public function testConvertToDatabaseValueInvalid()
+    public function testConvertToDatabaseValueInvalid(): void
     {
-        $this->assertNull($this->type->convertToDatabaseValue('EUR', $this->abstractPlatform));
+        self::assertNull($this->type->convertToDatabaseValue('EUR', $this->abstractPlatform));
     }
 
-    public function testConvertToPHPValueValid()
+    public function testConvertToPHPValueValid(): void
     {
         $phpValue = $this->type->convertToPHPValue('EUR', $this->abstractPlatform);
 
-        $this->assertInstanceOf(Currency::class, $phpValue);
-        $this->assertSame('EUR', $phpValue->getCode());
+        self::assertInstanceOf(Currency::class, $phpValue);
+        self::assertSame('EUR', $phpValue->getCode());
     }
 
-    public function testConvertToPHPValueNull()
+    public function testConvertToPHPValueNull(): void
     {
-        $this->assertNull($this->type->convertToPHPValue(null, $this->abstractPlatform));
+        self::assertNull($this->type->convertToPHPValue(null, $this->abstractPlatform));
     }
 }
