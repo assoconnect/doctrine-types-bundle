@@ -26,10 +26,13 @@ jobs:
       - run: composer install --prefer-dist --no-progress --no-suggest
       
       - run: vendor/bin/phpcs
+        if: ${{ failure() ||  success() }}
 
       - run: vendor/bin/phpstan
+        if: ${{ failure() ||  success() }}
       
       - run: XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover ./clover.xml --log-junit ./phpunit.report.xml
+        if: ${{ failure() ||  success() }}
       
       # https://community.sonarsource.com/t/code-coverage-doesnt-work-with-github-action/16747
       # $GITHUB_WORKSPACE contains a slash so @ is used as delimiter
