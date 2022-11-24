@@ -10,7 +10,7 @@ abstract class AbstractFixedLengthStringType extends Type
     /**
      * @inheritdoc
      */
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
+    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
         $fieldDeclaration['length'] = $this->getLength();
         return $platform->getVarcharTypeDeclarationSQL($fieldDeclaration);
@@ -21,7 +21,7 @@ abstract class AbstractFixedLengthStringType extends Type
     /**
      * @inheritdoc
      */
-    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
     {
         return true;
     }

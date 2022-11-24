@@ -23,7 +23,7 @@ class CurrencyType extends AbstractFixedLengthStringType
     /**
      * @inheritdoc
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): ?string
     {
         return ($value instanceof Currency) ? $value->getCode() : null;
     }
@@ -31,7 +31,7 @@ class CurrencyType extends AbstractFixedLengthStringType
     /**
      * @inheritdoc
      */
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    public function convertToPHPValue($value, AbstractPlatform $platform): ?Currency
     {
         return is_string($value) && '' !== $value ? new Currency($value) : null;
     }
