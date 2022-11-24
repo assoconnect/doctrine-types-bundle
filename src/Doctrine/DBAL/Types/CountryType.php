@@ -22,7 +22,7 @@ class CountryType extends AbstractFixedLengthStringType
     /**
      * @inheritdoc
      */
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
+    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
         $fieldDeclaration['fixed'] = true;
         return parent::getSQLDeclaration($fieldDeclaration, $platform);

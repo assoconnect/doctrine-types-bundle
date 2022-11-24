@@ -13,7 +13,7 @@ abstract class AbstractDecimalType extends DecimalType
     /**
      * @inheritdoc
      */
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
+    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
         if (!isset($fieldDeclaration['precision'])) {
             $fieldDeclaration['precision'] = $this->getDefaultPrecision();
@@ -27,7 +27,7 @@ abstract class AbstractDecimalType extends DecimalType
     /**
      * @inheritdoc
      */
-    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
     {
         return true;
     }
