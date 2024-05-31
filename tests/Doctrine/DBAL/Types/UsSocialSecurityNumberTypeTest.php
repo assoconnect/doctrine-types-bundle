@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace AssoConnect\DoctrineTypesBundle\Tests\Doctrine\DBAL\Types;
 
-use AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types\FrenchSiretType;
 use AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types\UsSocialSecurityNumberType;
 use AssoConnect\DoctrineTypesBundle\Tests\TypeTestCase;
 
