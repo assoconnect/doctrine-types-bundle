@@ -7,7 +7,7 @@ namespace AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types;
 class UsSocialSecurityNumberType extends AbstractFixedLengthStringType
 {
     public const NAME = 'usSocialSecurityNumber';
-    public const LENGTH = 9;
+    public const LENGTH = 11;
 
     public function getName(): string
     {
