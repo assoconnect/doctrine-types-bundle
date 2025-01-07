@@ -36,7 +36,7 @@
   "require": {
     "moneyphp/money": "^3.0|^4.0",
     "doctrine/dbal": "^2.8|^3.0",
-    "php": "^7.4|^8.0",
+    "php": "^7.4|^8.2",
     "ramsey/uuid-doctrine": "^1.4"
   },
   "require-dev": {
