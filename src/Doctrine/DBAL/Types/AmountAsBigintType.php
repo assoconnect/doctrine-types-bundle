@@ -25,6 +25,16 @@ class AmountAsBigintType extends Type
         return self::NAME;
     }
 
+    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    {
+        return (string) $value;
+    }
+
+    public function convertToPHPValue($value, AbstractPlatform $platform)
+    {
+        return (int) $value;
+    }
+
     /**
      * @inheritDoc
      */
