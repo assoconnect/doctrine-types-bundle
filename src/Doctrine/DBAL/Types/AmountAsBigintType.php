@@ -27,11 +27,19 @@ class AmountAsBigintType extends Type
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
+        if ($value === null) {
+            return null;
+        }
+
         return (string) $value;
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
+        if ($value === null) {
+            return null;
+        }
+
         return (int) $value;
     }
 
