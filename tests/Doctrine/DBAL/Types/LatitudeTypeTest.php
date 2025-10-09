@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AssoConnect\DoctrineTypesBundle\Tests\Doctrine\DBAL\Types;
 
 use AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types\LatitudeType;

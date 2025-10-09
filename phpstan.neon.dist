@@ -2,6 +2,6 @@ parameters:
     paths:
         - src/
         - tests/
+
 includes:
-    - vendor/assoconnect/phpstan-rules/extension.neon
-    - vendor/assoconnect/phpstan-rules/rules.neon
+    - vendor/assoconnect/php-quality-config/phpstan.extension.neon

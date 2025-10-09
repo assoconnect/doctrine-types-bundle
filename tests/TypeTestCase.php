@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AssoConnect\DoctrineTypesBundle\Tests;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;

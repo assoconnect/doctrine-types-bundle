@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AssoConnect\DoctrineTypesBundle;
 
 use AssoConnect\DoctrineTypesBundle\DependencyInjection\AssoConnectDoctrineValidatorExtension;

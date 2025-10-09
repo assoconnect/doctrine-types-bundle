@@ -10,7 +10,7 @@ jobs:
   build:
     strategy:
       matrix:
-        php-versions: ['7.4', '8.2', '8.3']
+        php-versions: ['8.2', '8.3']
         dependency-versions: ['lowest', 'highest']
     runs-on: ubuntu-latest
     steps:
@@ -23,7 +23,7 @@ jobs:
           php-version: ${{ matrix.php-versions }}
       
       - run: composer validate --strict
-      
+      - run: composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
       - run: composer install --prefer-dist --no-progress --no-suggest
       
       - run: vendor/bin/phpcs

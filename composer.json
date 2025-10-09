@@ -36,7 +36,7 @@
   "require": {
     "moneyphp/money": "^3.0|^4.0",
     "doctrine/dbal": "^2.8|^3.0",
-    "php": "^7.4|^8.2",
+    "php": "^8.2",
     "ramsey/uuid-doctrine": "^1.4"
   },
   "require-dev": {
@@ -46,6 +46,6 @@
     "symfony/framework-bundle": "^5.0|^6.0",
     "symfony/yaml": "^4.3|^5.0",
     "squizlabs/php_codesniffer": "^3.5",
-    "assoconnect/phpstan-rules": "^1.0"
+    "assoconnect/php-quality-config": "^1.11"
   }
 }
