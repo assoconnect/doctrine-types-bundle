@@ -31,7 +31,10 @@ jobs:
 
       - run: vendor/bin/phpstan
         if: ${{ failure() ||  success() }}
-      
+
+      - run: vendor/bin/rector process --dry-run
+        if: ${{ failure() ||  success() }}
+
       - run: XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover ./clover.xml --log-junit ./phpunit.report.xml
         if: ${{ failure() ||  success() }}
       
