@@ -84,7 +84,7 @@ class DateTimeImmutableMicroSecondsTypeTest extends TestCase
     /**
      * @return iterable<string, array{string, string}>
     */
-    public function provideDateTimeValues(): iterable
+    public static function provideDateTimeValues(): iterable
     {
         yield 'default datetime format' => ['1985-09-01 10:11:12.123', '1985-09-01 10:11:12.123'];
         yield 'date time with 6 digit microseconds precision' => [
