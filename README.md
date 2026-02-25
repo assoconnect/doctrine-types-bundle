@@ -6,6 +6,7 @@
 This Symfony5 bundle provides the integration of [Symfony validation component](https://symfony.com/doc/current/validation.html) with [Doctrine entity custom type](https://www.doctrine-project.org/projects/doctrine-orm/en/2.6/cookbook/custom-mapping-types.html) to avoid duplicate code for the following types:
 - [Amount](/src/Doctrine/DBAL/Types/AmountType.php)
 - [AbsolutePercentValue](/src/Doctrine/DBAL/Types/AbsolutePercentValueType.php)
+- [BelgianEnterpriseNumber](/src/Doctrine/DBAL/Types/BelgianEnterpriseNumberType.php)
 - [Bic](/src/Doctrine/DBAL/Types/BicType.php)
 - [Country](/src/Doctrine/DBAL/Types/CountryType.php)
 - [Currency](/src/Doctrine/DBAL/Types/CurrencyType.php)
