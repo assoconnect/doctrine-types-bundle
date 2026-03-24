@@ -6,7 +6,6 @@ namespace AssoConnect\DoctrineTypesBundle\Tests\Doctrine\DBAL\Types;
 
 use AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types\BicType;
 use AssoConnect\DoctrineTypesBundle\Tests\TypeTestCase;
-use Doctrine\DBAL\Platforms\MySqlPlatform;
 
 class BicTypeTest extends TypeTestCase
 {
@@ -22,7 +21,7 @@ class BicTypeTest extends TypeTestCase
 
     public function testGetSQLDeclaration(): void
     {
-        $this->abstractPlatform->method("getVarcharTypeDeclarationSQL")->willReturn("VARCHAR");
+        $this->abstractPlatform->method('getVarcharTypeDeclarationSQL')->willReturn('VARCHAR');
         self::assertSame('VARCHAR', $this->type->getSQLDeclaration([], $this->abstractPlatform));
     }
 }

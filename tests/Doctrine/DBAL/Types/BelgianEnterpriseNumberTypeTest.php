@@ -24,8 +24,8 @@ class BelgianEnterpriseNumberTypeTest extends TypeTestCase
         $this->abstractPlatform
             ->method('getVarcharTypeDeclarationSQL')
             ->with(['length' => BelgianEnterpriseNumberType::LENGTH])
-            ->willReturn("VARCHAR");
+            ->willReturn('VARCHAR');
 
-        self::assertSame("VARCHAR", $this->type->getSQLDeclaration([], $this->abstractPlatform));
+        self::assertSame('VARCHAR', $this->type->getSQLDeclaration([], $this->abstractPlatform));
     }
 }

@@ -44,8 +44,7 @@
     "doctrine/annotations": "~1.0",
     "symfony/framework-bundle": "^7.0",
     "symfony/yaml": "^7.0",
-    "squizlabs/php_codesniffer": "^3.5",
-    "assoconnect/php-quality-config": "^2"
+    "assoconnect/php-quality-config": "^2.2"
   },
   "config": {
     "allow-plugins": {

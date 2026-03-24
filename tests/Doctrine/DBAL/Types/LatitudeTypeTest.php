@@ -21,8 +21,8 @@ class LatitudeTypeTest extends TypeTestCase
 
     public function testGetSQLDeclaration(): void
     {
-        $this->abstractPlatform->method("getDecimalTypeDeclarationSQL")->willReturn("DECIMAL");
+        $this->abstractPlatform->method('getDecimalTypeDeclarationSQL')->willReturn('DECIMAL');
 
-        self::assertSame("DECIMAL", $this->type->getSQLDeclaration([], $this->abstractPlatform));
+        self::assertSame('DECIMAL', $this->type->getSQLDeclaration([], $this->abstractPlatform));
     }
 }
