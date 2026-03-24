@@ -6,9 +6,9 @@ namespace AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types;
 
 use DateTimeImmutable;
 use DateTimeInterface;
-use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
+use Doctrine\DBAL\Types\Type;
 
 class DateTimeImmutableMicroSecondsType extends Type
 {

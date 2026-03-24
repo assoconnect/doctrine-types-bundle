@@ -24,8 +24,8 @@ class CountryTypeTest extends TypeTestCase
         $this->abstractPlatform
             ->method('getVarcharTypeDeclarationSQL')
             ->with(['fixed' => true, 'length' => CountryType::LENGTH])
-            ->willReturn("VARCHAR");
+            ->willReturn('VARCHAR');
 
-        self::assertSame("VARCHAR", $this->type->getSQLDeclaration([], $this->abstractPlatform));
+        self::assertSame('VARCHAR', $this->type->getSQLDeclaration([], $this->abstractPlatform));
     }
 }
