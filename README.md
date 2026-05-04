@@ -24,6 +24,7 @@ This Symfony5 bundle provides the integration of [Symfony validation component](
 - [PhoneMobile](/src/Doctrine/DBAL/Types/PhoneMobileType.php)
 - [Phone](/src/Doctrine/DBAL/Types/PhoneType.php)
 - [Postal](/src/Doctrine/DBAL/Types/PostalType.php)
+- [SpanishNifType](/src/Doctrine/DBAL/Types/SpanishNifType.php)
 - [Timezone](/src/Doctrine/DBAL/Types/TimezoneType.php)
 
 It also supports nullable and non-nullable fields.
