@@ -16,7 +16,7 @@ class LatitudeTypeTest extends TypeTestCase
 
     public function testGetName(): void
     {
-        self::assertSame(LatitudeType::NAME, $this->type->getName());
+        self::assertSame(LatitudeType::NAME, (new LatitudeType())->getName());
     }
 
     public function testGetSQLDeclaration(): void

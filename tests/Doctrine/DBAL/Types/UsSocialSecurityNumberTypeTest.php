@@ -16,6 +16,6 @@ class UsSocialSecurityNumberTypeTest extends TypeTestCase
 
     public function testGetName(): void
     {
-        self::assertSame(UsSocialSecurityNumberType::NAME, $this->type->getName());
+        self::assertSame(UsSocialSecurityNumberType::NAME, (new UsSocialSecurityNumberType())->getName());
     }
 }

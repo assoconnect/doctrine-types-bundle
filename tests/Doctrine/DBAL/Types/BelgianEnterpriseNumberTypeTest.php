@@ -6,6 +6,7 @@ namespace AssoConnect\DoctrineTypesBundle\Tests\Doctrine\DBAL\Types;
 
 use AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types\BelgianEnterpriseNumberType;
 use AssoConnect\DoctrineTypesBundle\Tests\TypeTestCase;
+use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 class BelgianEnterpriseNumberTypeTest extends TypeTestCase
 {
@@ -16,16 +17,18 @@ class BelgianEnterpriseNumberTypeTest extends TypeTestCase
 
     public function testGetName(): void
     {
-        self::assertSame(BelgianEnterpriseNumberType::NAME, $this->type->getName());
+        self::assertSame(BelgianEnterpriseNumberType::NAME, (new BelgianEnterpriseNumberType())->getName());
     }
 
     public function testGetSQLDeclaration(): void
     {
-        $this->abstractPlatform
-            ->method('getVarcharTypeDeclarationSQL')
+        $platform = $this->createMock(AbstractPlatform::class);
+        $platform
+            ->expects(self::once())
+            ->method('getStringTypeDeclarationSQL')
             ->with(['length' => BelgianEnterpriseNumberType::LENGTH])
             ->willReturn('VARCHAR');
 
-        self::assertSame('VARCHAR', $this->type->getSQLDeclaration([], $this->abstractPlatform));
+        self::assertSame('VARCHAR', $this->type->getSQLDeclaration([], $platform));
     }
 }

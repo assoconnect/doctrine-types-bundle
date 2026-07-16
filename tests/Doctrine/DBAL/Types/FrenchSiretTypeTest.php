@@ -16,6 +16,6 @@ class FrenchSiretTypeTest extends TypeTestCase
 
     public function testGetName(): void
     {
-        self::assertSame(FrenchSiretType::NAME, $this->type->getName());
+        self::assertSame(FrenchSiretType::NAME, (new FrenchSiretType())->getName());
     }
 }

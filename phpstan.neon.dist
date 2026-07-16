@@ -3,5 +3,16 @@ parameters:
         - src/
         - tests/
 
+    # The errors below depend on which DBAL major is installed (^3.6|^4.0 are both supported),
+    # so each analysis run only matches half of them.
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        # DBAL 3 only: static factories removed in DBAL 4
+        - '#Call to an undefined static method Doctrine\\DBAL\\Types\\ConversionException::conversionFailed(Format|InvalidType)\(\)\.#'
+        # DBAL 4 only: exception classes absent from DBAL 3
+        - '#unknown class Doctrine\\DBAL\\Types\\Exception\\Invalid(Format|Type)#'
+        # Removed from the base Type class in DBAL 4 but still defined by our types for DBAL 3
+        - '#Call to an undefined method Doctrine\\DBAL\\Types\\Type::requiresSQLCommentHint\(\)\.#'
+
 includes:
     - vendor/assoconnect/php-quality-config/phpstan.extension.neon

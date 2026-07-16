@@ -6,15 +6,12 @@ namespace AssoConnect\DoctrineTypesBundle\Tests;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 abstract class TypeTestCase extends TestCase
 {
-    /**
-     * @var MockObject|AbstractPlatform
-     */
-    protected $abstractPlatform;
+    protected AbstractPlatform&Stub $abstractPlatform;
 
     protected Type $type;
 
@@ -25,15 +22,7 @@ abstract class TypeTestCase extends TestCase
 
     protected function setUp(): void
     {
-        $this->abstractPlatform = $this->getMockForAbstractClass(
-            AbstractPlatform::class,
-            array(),
-            '',
-            true,
-            true,
-            true,
-            array('getVarcharTypeDeclarationSQL', 'getDecimalTypeDeclarationSQL')
-        );
+        $this->abstractPlatform = self::createStub(AbstractPlatform::class);
 
         $class = $this->getClass();
         $name = $class::NAME;

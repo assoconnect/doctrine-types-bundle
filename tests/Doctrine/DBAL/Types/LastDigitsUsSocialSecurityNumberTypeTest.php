@@ -16,6 +16,9 @@ class LastDigitsUsSocialSecurityNumberTypeTest extends TypeTestCase
 
     public function testGetName(): void
     {
-        self::assertSame(LastDigitsUsSocialSecurityNumberType::NAME, $this->type->getName());
+        self::assertSame(
+            LastDigitsUsSocialSecurityNumberType::NAME,
+            (new LastDigitsUsSocialSecurityNumberType())->getName()
+        );
     }
 }
