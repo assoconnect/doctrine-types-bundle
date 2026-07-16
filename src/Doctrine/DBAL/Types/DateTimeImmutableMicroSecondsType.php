@@ -64,6 +64,9 @@ class DateTimeImmutableMicroSecondsType extends Type
     /**
      * DBAL 4 replaced the ConversionException static factories with dedicated exception classes.
      * The runtime conditionals below can be inlined once DBAL 3 support is dropped.
+     * Excluded from coverage: only one branch can run for a given installed DBAL major.
+     *
+     * @codeCoverageIgnore
      */
     private function createInvalidFormatException(mixed $value, \Throwable $previous): ConversionException
     {
@@ -74,6 +77,9 @@ class DateTimeImmutableMicroSecondsType extends Type
         return ConversionException::conversionFailedFormat($value, self::NAME, self::FORMAT, $previous);
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     private function createInvalidTypeException(mixed $value): ConversionException
     {
         if (class_exists(InvalidType::class)) {

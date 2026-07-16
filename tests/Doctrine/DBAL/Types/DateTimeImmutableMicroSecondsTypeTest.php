@@ -7,7 +7,6 @@ namespace AssoConnect\DoctrineTypesBundle\Tests\Doctrine\DBAL\Types;
 use AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types\DateTimeImmutableMicroSecondsType;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
-use Doctrine\DBAL\Types\Type;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
@@ -16,12 +15,23 @@ class DateTimeImmutableMicroSecondsTypeTest extends TestCase
 {
     protected AbstractPlatform&Stub $platform;
 
-    protected Type $type;
+    protected DateTimeImmutableMicroSecondsType $type;
 
     protected function setUp(): void
     {
         $this->type = new DateTimeImmutableMicroSecondsType();
         $this->platform = self::createStub(AbstractPlatform::class);
+    }
+
+    public function testGetName(): void
+    {
+        self::assertSame(DateTimeImmutableMicroSecondsType::NAME, $this->type->getName());
+    }
+
+    public function testGetSQLDeclaration(): void
+    {
+        self::assertSame('DATETIME(3)', $this->type->getSQLDeclaration([], $this->platform));
+        self::assertSame('TIMESTAMP', $this->type->getSQLDeclaration(['version' => true], $this->platform));
     }
 
     /**
@@ -57,6 +67,19 @@ class DateTimeImmutableMicroSecondsTypeTest extends TestCase
     public function testNullConversion(): void
     {
         self::assertNull($this->type->convertToPHPValue(null, $this->platform));
+    }
+
+    public function testNullConversionToDatabaseValue(): void
+    {
+        self::assertNull($this->type->convertToDatabaseValue(null, $this->platform));
+    }
+
+    public function testConvertFormattedStringToPHPValue(): void
+    {
+        $date = $this->type->convertToPHPValue('1985-09-01 10:11:12.123', $this->platform);
+
+        self::assertInstanceOf(\DateTimeImmutable::class, $date);
+        self::assertSame('1985-09-01 10:11:12.123', $date->format('Y-m-d H:i:s.v'));
     }
 
     #[DataProvider('provideDateTimeValues')]
@@ -108,6 +131,7 @@ class DateTimeImmutableMicroSecondsTypeTest extends TestCase
     {
         $date = $this->type->convertToPHPValue('1985-09-01', $this->platform);
 
+        self::assertInstanceOf(\DateTimeImmutable::class, $date);
         self::assertEquals('00:00:00.000', $date->format('H:i:s.v'));
     }
 
@@ -116,9 +140,11 @@ class DateTimeImmutableMicroSecondsTypeTest extends TestCase
         date_default_timezone_set('Europe/Berlin');
 
         $date = $this->type->convertToPHPValue('2009-08-01', $this->platform);
+        self::assertInstanceOf(\DateTimeImmutable::class, $date);
         self::assertEquals('2009-08-01 00:00:00.000', $date->format('Y-m-d H:i:s.v'));
 
         $date = $this->type->convertToPHPValue('2009-11-01', $this->platform);
+        self::assertInstanceOf(\DateTimeImmutable::class, $date);
         self::assertEquals('2009-11-01 00:00:00.000', $date->format('Y-m-d H:i:s.v'));
     }
 
