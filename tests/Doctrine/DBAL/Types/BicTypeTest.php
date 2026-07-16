@@ -16,12 +16,12 @@ class BicTypeTest extends TypeTestCase
 
     public function testGetName(): void
     {
-        self::assertSame(BicType::NAME, $this->type->getName());
+        self::assertSame(BicType::NAME, (new BicType())->getName());
     }
 
     public function testGetSQLDeclaration(): void
     {
-        $this->abstractPlatform->method('getVarcharTypeDeclarationSQL')->willReturn('VARCHAR');
+        $this->abstractPlatform->method('getStringTypeDeclarationSQL')->willReturn('VARCHAR');
         self::assertSame('VARCHAR', $this->type->getSQLDeclaration([], $this->abstractPlatform));
     }
 }

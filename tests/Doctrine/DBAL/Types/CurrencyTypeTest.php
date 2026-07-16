@@ -17,7 +17,7 @@ class CurrencyTypeTest extends TypeTestCase
 
     public function testGetName(): void
     {
-        self::assertSame(CurrencyType::NAME, $this->type->getName());
+        self::assertSame(CurrencyType::NAME, (new CurrencyType())->getName());
     }
 
     public function testConvertToDatabaseValueValid(): void

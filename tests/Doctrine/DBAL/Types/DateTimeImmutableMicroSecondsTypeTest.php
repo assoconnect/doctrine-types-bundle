@@ -8,27 +8,26 @@ use AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types\DateTimeImmutableMicroSe
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\Type;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
 class DateTimeImmutableMicroSecondsTypeTest extends TestCase
 {
-    /** @var AbstractPlatform|MockObject */
-    protected AbstractPlatform $platform;
+    protected AbstractPlatform&Stub $platform;
 
     protected Type $type;
 
     protected function setUp(): void
     {
         $this->type = new DateTimeImmutableMicroSecondsType();
-        $this->platform = $this->getMockForAbstractClass(AbstractPlatform::class);
+        $this->platform = self::createStub(AbstractPlatform::class);
     }
 
     /**
      * @param mixed $value
-     *
-     * @dataProvider invalidPHPValuesProvider
      */
+    #[DataProvider('invalidPHPValuesProvider')]
     public function testInvalidTypeConversionToDatabaseValue($value): void
     {
         $this->expectException(ConversionException::class);
@@ -60,9 +59,7 @@ class DateTimeImmutableMicroSecondsTypeTest extends TestCase
         self::assertNull($this->type->convertToPHPValue(null, $this->platform));
     }
 
-    /**
-     * @dataProvider provideDateTimeValues
-     */
+    #[DataProvider('provideDateTimeValues')]
     public function testDateConvertsToDatabaseValue(string $datetime, string $expectedDatetimeResult): void
     {
         $date = new \DateTimeImmutable($datetime);
@@ -70,14 +67,22 @@ class DateTimeImmutableMicroSecondsTypeTest extends TestCase
         self::assertSame($expectedDatetimeResult, $this->type->convertToDatabaseValue($date, $this->platform));
     }
 
-    /**
-     * @dataProvider provideDateTimeValues
-     */
+    #[DataProvider('provideDateTimes')]
     public function testConvertDateToPHPValue(string $datetime): void
     {
         $date = new \DateTimeImmutable($datetime);
 
         self::assertSame($date, $this->type->convertToPHPValue($date, $this->platform));
+    }
+
+    /**
+     * @return iterable<string, array{string}>
+     */
+    public static function provideDateTimes(): iterable
+    {
+        foreach (self::provideDateTimeValues() as $key => [$datetime]) {
+            yield $key => [$datetime];
+        }
     }
 
 

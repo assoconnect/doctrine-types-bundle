@@ -35,13 +35,11 @@
   },
   "require": {
     "moneyphp/money": "^3.0|^4.0",
-    "doctrine/dbal": "^2.8|^3.0",
+    "doctrine/dbal": "^3.6|^4.0",
     "php": "^8.4",
-    "ramsey/uuid-doctrine": "^1.4"
+    "ramsey/uuid-doctrine": "^1.4|^2.0"
   },
   "require-dev": {
-    "doctrine/cache": "~1.0",
-    "doctrine/annotations": "~1.0",
     "symfony/framework-bundle": "^7.0",
     "symfony/yaml": "^7.0",
     "assoconnect/php-quality-config": "^2.2"

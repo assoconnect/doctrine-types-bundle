@@ -8,11 +8,15 @@ use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\ConversionException;
+use Doctrine\DBAL\Types\Exception\InvalidFormat;
+use Doctrine\DBAL\Types\Exception\InvalidType;
 use Doctrine\DBAL\Types\Type;
 
 class DateTimeImmutableMicroSecondsType extends Type
 {
     public const NAME = 'datetime_immutable_micro_seconds';
+
+    private const FORMAT = 'Y-m-d H:i:s.v';
 
     public function getName(): string
     {
@@ -30,18 +34,13 @@ class DateTimeImmutableMicroSecondsType extends Type
             return $value;
         }
 
-        $date = DateTimeImmutable::createFromFormat('Y-m-d H:i:s.v', $value);
+        $date = DateTimeImmutable::createFromFormat(self::FORMAT, $value);
 
         if ($date === false) {
             try {
                 $dateTime = new DateTimeImmutable($value);
             } catch (\Exception $e) {
-                throw ConversionException::conversionFailedFormat(
-                    $value,
-                    $this->getName(),
-                    'Y-m-d H:i:s.v',
-                    $e // Previous exception bundled
-                );
+                throw $this->createInvalidFormatException($value, $e);
             }
             return $dateTime;
         }
@@ -56,13 +55,34 @@ class DateTimeImmutableMicroSecondsType extends Type
         }
 
         if ($value instanceof DateTimeImmutable) {
-            return $value->format('Y-m-d H:i:s.v');
+            return $value->format(self::FORMAT);
         }
 
-        throw ConversionException::conversionFailedInvalidType(
-            $value,
-            $this->getName(),
-            ['null', DateTimeImmutable::class]
-        );
+        throw $this->createInvalidTypeException($value);
+    }
+
+    /**
+     * DBAL 4 replaced the ConversionException static factories with dedicated exception classes.
+     * The runtime conditionals below can be inlined once DBAL 3 support is dropped.
+     */
+    private function createInvalidFormatException(mixed $value, \Throwable $previous): ConversionException
+    {
+        if (class_exists(InvalidFormat::class)) {
+            return InvalidFormat::new($value, self::NAME, self::FORMAT, $previous);
+        }
+
+        return ConversionException::conversionFailedFormat($value, self::NAME, self::FORMAT, $previous);
+    }
+
+    private function createInvalidTypeException(mixed $value): ConversionException
+    {
+        if (class_exists(InvalidType::class)) {
+            return InvalidType::new($value, self::NAME, ['null', DateTimeImmutable::class]);
+        }
+
+        return ConversionException::conversionFailedInvalidType($value, self::NAME, [
+            'null',
+            DateTimeImmutable::class,
+        ]);
     }
 }

@@ -15,7 +15,7 @@ abstract class AbstractFixedLengthStringType extends Type
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
         $fieldDeclaration['length'] = $this->getLength();
-        return $platform->getVarcharTypeDeclarationSQL($fieldDeclaration);
+        return $platform->getStringTypeDeclarationSQL($fieldDeclaration);
     }
 
     abstract protected function getLength(): int;

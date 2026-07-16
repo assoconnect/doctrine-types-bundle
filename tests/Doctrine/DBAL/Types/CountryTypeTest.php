@@ -6,6 +6,7 @@ namespace AssoConnect\DoctrineTypesBundle\Tests\Doctrine\DBAL\Types;
 
 use AssoConnect\DoctrineTypesBundle\Doctrine\DBAL\Types\CountryType;
 use AssoConnect\DoctrineTypesBundle\Tests\TypeTestCase;
+use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 class CountryTypeTest extends TypeTestCase
 {
@@ -16,16 +17,18 @@ class CountryTypeTest extends TypeTestCase
 
     public function testGetName(): void
     {
-        self::assertSame(CountryType::NAME, $this->type->getName());
+        self::assertSame(CountryType::NAME, (new CountryType())->getName());
     }
 
     public function testGetSQLDeclaration(): void
     {
-        $this->abstractPlatform
-            ->method('getVarcharTypeDeclarationSQL')
+        $platform = $this->createMock(AbstractPlatform::class);
+        $platform
+            ->expects(self::once())
+            ->method('getStringTypeDeclarationSQL')
             ->with(['fixed' => true, 'length' => CountryType::LENGTH])
             ->willReturn('VARCHAR');
 
-        self::assertSame('VARCHAR', $this->type->getSQLDeclaration([], $this->abstractPlatform));
+        self::assertSame('VARCHAR', $this->type->getSQLDeclaration([], $platform));
     }
 }
