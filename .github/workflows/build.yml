@@ -45,14 +45,9 @@ jobs:
       - run: XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover ./clover.xml --log-junit ./phpunit.report.xml
         if: ${{ failure() ||  success() }}
 
-      # https://community.sonarsource.com/t/code-coverage-doesnt-work-with-github-action/16747
-      # $GITHUB_WORKSPACE contains a slash so @ is used as delimiter
-      - run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' clover.xml
-      - run: sed -i 's@'$GITHUB_WORKSPACE'@/github/workspace/@g' phpunit.report.xml
-
-      - uses: sonarsource/sonarcloud-github-action@master
+      - uses: SonarSource/sonarqube-scan-action@v8
+        if: ${{ matrix.dependency-versions == 'highest' }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
